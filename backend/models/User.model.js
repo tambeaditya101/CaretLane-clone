@@ -4,10 +4,7 @@ const userSchema = mongoose.Schema({
   name: {type: String, required: true, minlength: 3},
   email: {type: String, required : true, unique: true},
   gender: {type: String, required: true, enum: ["Male", "Female"]},
-  password: {type: String, required: true, minlength: 4},
-  age: {type: String, required: true},
-  city: {type: String, required: true},
-  is_married: Boolean
+  password: {type: String, required: true, minlength: 4}
 },{
   versionKey: false
 });
@@ -18,11 +15,8 @@ module.exports = { UserModel };
 /*
 {
     "name": "Ankit",
-    "email": "ankit@gmailcom",
+    "email": "ankit@gmail.com",
     "gender": "Male",
-    "password": "ankit",
-    "age": 27,
-    "city":"patna",
-    "is_married": false
+    "password": "ankit"
 }
 */
