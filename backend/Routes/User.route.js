@@ -6,7 +6,7 @@ const { UserModel } = require("../models/User.model");
 const userRouter = express.Router();
 
 userRouter.post("/register",async (req,res)=>{
-    if(req.body.name && req.body.email && req.body.gender && req.body.password && req.body.age && req.body.city){
+    if(req.body.name && req.body.email && req.body.gender && req.body.password){
         const {email, password} = req.body;
         const isUserAlreadyPresent =await UserModel.findOne({email});
         //console.log(isUserAlreadyPresent)
@@ -56,12 +56,3 @@ module.exports = {
 }
 
 
-/*
- name: {type: String, required: true},
-  email: {type: String, required : true, unique: true},
-  gender: {type: String, required: true, enum: ["Male", "Female"]},
-  password: {type: String, required: true},
-  age: {type: String, required: true},
-  city: {type: String, required: true},
-  is_married: String
-*/

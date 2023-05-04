@@ -7,19 +7,63 @@ const productRouter = Router();
 
 
 productRouter.get("/products",async (req,res)=>{
-    const all_products = await ProductModel.find();
-    console.log(all_products)
-    if(all_products.length){
-        res.send(all_products);
-    }else{
-        res.send({"msg": "add some product first."});
+    try {
+        const {minPrice, maxPrice, minWeight, maxWeight, type, order} = req.query;
+        const query = {};
+        if(minPrice){
+            query.product_price={$gte:minPrice}
+        };
+        if(maxPrice){
+            query.product_price.$lte=maxPrice
+        }
+        if(minWeight){
+            query.product_weight={$gte:minWeight}
+        };
+        if(maxWeight){
+            query.product_weight.$lte=maxWeight;
+        }
+        if(type){
+            query.product_type=type;
+        }
+        console.log(query);
+        if(order=="asc"){
+            const data = await ProductModel.find(query).sort({product_price: 1});
+            res.status(200).send(data);
+        }else if(order=="desc"){
+            const data = await ProductModel.find(query).sort({product_price: -1});
+            res.status(200).send(data);
+        }else{
+            const data = await ProductModel.find(query);
+            res.status(200).send(data);
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({"msg":"something went wrong, please try again later."})
+    }
+});
+
+// minPrice=10000&&maxPrice=20000&&minWeight=5&&maxWeight=10&&type=Rings&&type=Earing
+
+productRouter.get("/product/singleProduct/:productID",async (req,res)=>{
+    console.log(req.params.productID)
+    try {
+        const product = await ProductModel.findById(req.params.productID);
+        console.log(product)
+        if (product) {
+            res.status(200).send(product);
+        } else {
+            res.send({"msg":"there is no movie found with this particual ID."})
+        }
+    } catch (err) {
+        res.status(404).send({"msg":"something went wrong, please try again later."})
     }
 });
 
 productRouter.use(Auth);
 
+
 productRouter.post("/product/create",async (req,res)=>{
-     if (req.body.product_img && req.body.product_name && req.body.product_price && req.body.product_desc && req.body.product_rating && req.body.user_ID) {
+     if (req.body.product_img && req.body.product_name && req.body.product_price && req.body.product_desc && req.body.product_weight && req.body.product_type && req.body.user_ID) {
         try {
             const payload = req.body;
             //console.log(payload)
