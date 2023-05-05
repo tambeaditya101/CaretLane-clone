@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navdropcon {
+  display: flex;
+  justify-content: space-around;
+  /* border: 1px solid red; */
+  padding: 12px 0px;
+  background-color: #fff;
+}
+
+.navdropcon h3 {
+  /* border: 1px solid red; */
+  font: size 1.1rem;
+  font-weight: 400;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.navdropconList > li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  gap: 10px;
+}
+
+.navdropconList > li > div {
+  width: 65px;
+  display: flex;
+  align-items: center;
+}
+
+.navdropconList > li > div > img {
+  width: 100%;
+}
+
+.shopBystyles {
+  display: flex;
+  gap: 10px;
+}
+
+.shopBystyles1 > li {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  /* border: 1px solid green; */
+  gap: 10px;
+}
+
+.navdropconList > li > span a {
+  color: rgb(51, 54, 62);
+}
+
+.shopBystyles1 > li > div {
+  display: flex;
+  width: 20px;
+  align-items: center;
+}
+
+.shopBystyles1 > li > div > img {
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+.shopBystyles1 > li > span > a {
+  display: inline-block;
+  color: rgb(51, 54, 62);
+}
+
+.shopBY > ul > li {
+  padding: 10px;
+  color: rgb(51, 54, 62);
+  text-align: left;
+}
+
+.underline {
+  content: "";
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: 45px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgb(222, 87, 229),
+    rgb(136, 99, 251) 76%,
+    rgb(255, 255, 255) 76%,
+    rgb(255, 255, 255) 86%,
+    rgb(136, 99, 251) 86%,
+    rgb(136, 99, 251) 100%
+  );
+}
+
+.navdropcon a:hover {
+  font-size: 0.9rem;
+}
+
+.shopBY > ul > li:hover {
+  font-size: 0.9rem;
+}

@@ -1,0 +1,51 @@
+.footermidList {
+  background-color: #f6eff6;
+}
+
+.footermidList > li {
+  border-bottom: 1px solid lightgray;
+  list-style-type: none;
+}
+
+.footerAccordin {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0px;
+  /* margin-bottom: 15px; */
+}
+
+.footerAccordin > h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(35, 21, 53);
+  padding-bottom: 4px;
+}
+
+.footerList1 {
+  padding: 5px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footerList1 > li {
+  font-size: 0.8rem;
+  list-style-type: none;
+  text-align: left;
+  color: rgb(135, 118, 157);
+}
+
+.footerContactCon {
+  padding: 5px 18px 5px 0px;
+  display: flex;
+  gap: 10px;
+}
+
+.footerContactCon svg {
+  font-size: 1.3rem;
+  color: #4f3267;
+}
+
+.underline {
+  color: rgb(222, 87, 229);
+  text-decoration: underline;
+}
