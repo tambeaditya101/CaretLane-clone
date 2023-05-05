@@ -1,0 +1,258 @@
+/* 1228px */
+.footer {
+  background-color: #f6eff6;
+}
+
+.footerWrapper {
+  padding: 54px 0px 58px;
+}
+
+.footerspace {
+  /* margin: 0px auto; */
+  padding: 0px 36px;
+}
+.footerList>li{
+  list-style-type: none;
+}
+.footerList {
+  max-width: 1228px;
+  text-align: left;
+
+  /* border: 1px solid red; */
+  display: flex;
+  margin: 0px auto;
+  justify-content: space-between;
+}
+
+.footerList > li > h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(35, 21, 53);
+  padding-bottom: 4px;
+  padding-left: 30px;
+}
+
+.footerList1 {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 7px;
+  list-style-type: none;
+}
+
+.footerList1 > li {
+  list-style-type: none;
+  font-size: 0.9rem;
+  color: rgb(135, 118, 157);
+}
+
+.footerContactCon {
+  padding: 5px 18px 5px 0px;
+  display: flex;
+  gap: 10px;
+}
+.footerContactCon svg {
+  font-size: 1.3rem;
+  color: #4f3267;
+}
+
+.underline {
+  color: rgb(222, 87, 229);
+  text-decoration: underline;
+}
+
+.footersocailhandles {
+  /* border: 1px solid red; */
+  max-width: 1228px;
+  margin: 0 auto;
+}
+
+.footersocailhandles > div:first-child {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 25px;
+  /* margin-right: 48px; */
+  width: 89%;
+  margin: 0px auto;
+}
+
+.footersocailhandles > div:first-child > button {
+  padding: 10px 10px;
+  border: 1px solid rgb(136, 99, 251);
+  border-radius: 10px;
+  color: rgb(79, 50, 103);
+  text-align: center;
+}
+
+.footerShcontainer {
+  display: flex;
+}
+
+.footerSh {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 70%;
+  padding: 10px 0px;
+}
+
+.footerSh > li {
+  border: 1px solid rgb(164, 106, 193);
+  color: rgb(164, 106, 193);
+  padding: 5px 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.footerSh + div {
+  width: 30%;
+}
+
+.footerdownoadList {
+  border: 2px solid #cbb6ff;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 12px;
+  border-radius: 12px;
+  margin: 0px auto;
+}
+
+.footerdownoadListCON {
+  max-width: 1228px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.footerDownloadlistcontainer {
+  width: 336px;
+}
+
+.footerdownoadList > div:first-child {
+  background: url(https://assets.cltstatic.com/images/responsive/header-footer-sprite.png) -22px -16px /
+    450px no-repeat;
+  display: block;
+  cursor: pointer;
+  width: 127px;
+  height: 37px;
+}
+
+.footerdownoadList > div:last-child {
+  background: url(https://assets.cltstatic.com/images/responsive/header-footer-sprite.png) -164px -16px /
+    450px no-repeat;
+  display: block;
+  cursor: pointer;
+  width: 125px;
+  height: 37px;
+}
+
+.footerDownload > h4 {
+  max-width: 1228px;
+  margin: 0 auto;
+  /* border: 1px solid red; */
+  font-size: 0.7rem;
+  color: rgb(135, 118, 157);
+  font-weight: 500;
+}
+
+.footerPaymentOption {
+  display: flex;
+  gap: 25px;
+}
+
+.footerPaymentOption > li > svg {
+  font-size: 2rem;
+}
+
+.footerPaymentOptionCon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footerMid {
+  display: none;
+}
+
+@media screen and (max-width: 1010px) {
+  .footerList {
+    display: none;
+  }
+
+  .footerMid {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 791px) {
+  .footersocailhandles > div:first-child {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .footerSh {
+    /* border: 1px solid red; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 0px;
+  }
+
+  .footerSh + div {
+    display: none;
+  }
+
+  .footerDownload > h4 {
+    padding-top: 18px;
+    text-align: center;
+  }
+
+  .footerDownloadlistcontainer {
+    width: 280px;
+  }
+
+  .footerdownoadList {
+    padding: 16px 2px;
+  }
+
+  .footerdownoadListCON {
+    /* border: 1px solid red; */
+    justify-content: center;
+  }
+
+  .footerdownoadList > div:first-child {
+    background: url(https://assets.cltstatic.com/images/responsive/header-footer-sprite.png) -227px -63px /
+      450px no-repeat;
+    width: 97px;
+    height: 28px;
+  }
+
+  .footerdownoadList > div:last-child {
+    background: url(https://assets.cltstatic.com/images/responsive/header-footer-sprite.png) -333px -63px /
+      450px no-repeat;
+    display: block;
+    cursor: pointer;
+    width: 95px;
+    height: 28px;
+  }
+
+  .footerPaymentOption {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 613px) {
+  .footerspace {
+    padding: 0px 20px;
+    margin: 0;
+  }
+}
