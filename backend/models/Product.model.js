@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema({
     product_desc: {type: String, required: true},
     product_weight: {type: Number, required: true},
     product_type: {type: String, required: true, enum: ["Earing","Rings","Necklaces","Pendants","Bracelets","Bangles"]},
-    user_ID: {type:String, required: true}
+    user_ID: {type:String, required: false}
 },{
     versionKey: false   
 });

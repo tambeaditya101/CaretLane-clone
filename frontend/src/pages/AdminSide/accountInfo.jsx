@@ -26,9 +26,6 @@ import React, { useState, useEffect } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const AccountInfo = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const toast = useToast();
-  const initialRef = React.useRef(null);
   const [details, setDetails] = useState({
     Name: "Hemensan",
     EmailId: "Hemensan@diamond.com",
@@ -36,10 +33,8 @@ const AccountInfo = () => {
     Password: "@Hemensan",
   });
   const [show, setShow] = useState(false);
-  const [ids, setIds] = useState(0);
-  let adminDetails = {};
-  
-  const [updateData, setUpdateData] = useState([]);
+ 
+ 
   const handleClick = () => setShow(!show);
   
  
