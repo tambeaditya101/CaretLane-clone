@@ -18,16 +18,45 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPass] = useState("");
+  const navigate = useNavigate();
   const handleClick = () => {
-    const form = { name, gender, email, pass };
-    console.log(form);
+    const form = { name, gender, email, password };
+    fetch("http://localhost:8080/user/register", {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        //console.log(res);
+        if (res.msg === "Registerd Successfull.") {
+          setName("");
+          setGender("");
+          setEmail("");
+          setPass("");
+          alert("New user added");
+          navigate("/login");
+        } else if (res.msg === "This email is already registered.") {
+          setEmail("");
+          alert("Email already in use");
+        } else if (res.msg === "Please fill all the details.") {
+          alert("Some fields are missing");
+        } else {
+          alert("Wrong credentials");
+        }
+      })
+      .catch((err) => console.log(err));
+    //console.log(form);
   };
   return (
     <Flex
@@ -90,7 +119,7 @@ export default function Signup() {
               <InputGroup>
                 <Input
                   type={showPassword ? "text" : "password"}
-                  value={pass}
+                  value={password}
                   onChange={(e) => setPass(e.target.value)}
                 />
                 <InputRightElement h={"full"}>

@@ -14,13 +14,37 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPass] = useState("");
+  const navigate = useNavigate();
   const handleClick = () => {
-    const form = { email, pass };
+    const form = { email, password };
     console.log(form);
+    fetch("http://localhost:8080/user/login", {
+      method: "POST",
+      body: JSON.stringify(form),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.msg === "login successfull" && res.token) {
+          alert("Login Success");
+          navigate("/");
+        } else if (res.msg === "login failed") {
+          alert("Wrong credentials");
+        } else if (res.msg === "Please fill all the fields") {
+          alert("Some fields are missing");
+        } else {
+          alert("Something went wrong. Please try after sometime");
+        }
+      })
+      .catch((err) => alert("Something went wrong"));
   };
   return (
     <Flex
@@ -58,7 +82,7 @@ export default function Login() {
               <FormLabel>Password</FormLabel>
               <Input
                 type="password"
-                value={pass}
+                value={password}
                 onChange={(e) => setPass(e.target.value)}
               />
             </FormControl>
