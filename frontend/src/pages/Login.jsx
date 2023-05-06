@@ -15,7 +15,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPass] = useState("");
@@ -34,17 +34,27 @@ export default function Login() {
       .then((res) => {
         console.log(res);
         if (res.msg === "login successfull" && res.token) {
-          alert("Login Success");
+          Swal.fire("Good job!", "Login Successfull", "success");
           navigate("/");
         } else if (res.msg === "login failed") {
-          alert("Wrong credentials");
+          Swal.fire("Nah !", "Wrong credentials", "error");
         } else if (res.msg === "Please fill all the fields") {
-          alert("Some fields are missing");
+          Swal.fire("Wait", "Some fields are missing", "question");
         } else {
-          alert("Something went wrong. Please try after sometime");
+          Swal.fire(
+            "Error",
+            "Something went wrong. Please try after sometime",
+            "error"
+          );
         }
       })
-      .catch((err) => alert("Something went wrong"));
+      .catch((err) =>
+        Swal.fire(
+          "Error",
+          "Something went wrong. Please try after sometime",
+          "error"
+        )
+      );
   };
   return (
     <Flex
@@ -74,6 +84,7 @@ export default function Login() {
               <FormLabel>Email address</FormLabel>
               <Input
                 type="email"
+                placeholder="enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -83,6 +94,7 @@ export default function Login() {
               <Input
                 type="password"
                 value={password}
+                placeholder="enter your password"
                 onChange={(e) => setPass(e.target.value)}
               />
             </FormControl>

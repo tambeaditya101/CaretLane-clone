@@ -14,7 +14,6 @@ import Pending from "./Pending";
 import Completed from "./Completed";
 import axios from "axios";
 import Return from "./Return";
-
 const Orders = () => {
   const [userDetails, setUserDetails] = useState([]);
 
@@ -28,7 +27,6 @@ const Orders = () => {
   useEffect(() => {
     GetUserOrderDetails();
   }, []);
-  
   return (
     <Box
       color={"white"}

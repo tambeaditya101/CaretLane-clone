@@ -1,7 +1,7 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useState } from "react";
-import { BsCheck2All } from "react-icons/bs";
+//import { BsCheck2All } from "react-icons/bs";
 const ProductItems = ({
   i,
   _id,
@@ -37,20 +37,16 @@ const ProductItems = ({
         <Box
           width={{ base: "5%", md: "13%", lg: "10%" }}
           onClick={() => {
-            handleOpenDetails(_id,   product_name,
-              product_price,
-              product_img,);
+            handleOpenDetails(_id, product_name, product_price, product_img);
           }}
         >
-          <Image width={"100%"} src={ product_img} alt={user_ID}></Image>
+          <Image width={"100%"} src={product_img} alt={user_ID}></Image>
         </Box>
         <Box
           width={{ base: "10%", md: "27%", lg: "25%" }}
           fontSize={{ base: "12px", md: "12px", lg: "md" }}
           onClick={() => {
-            handleOpenDetails(_id,   product_name,
-              product_price,
-              product_img,);
+            handleOpenDetails(_id, product_name, product_price, product_img);
           }}
         >
           <Text>{product_name}</Text>
@@ -59,9 +55,7 @@ const ProductItems = ({
           width={{ base: "5%", md: "10%", lg: "8%" }}
           fontSize={{ base: "12px", md: "12px", lg: "md" }}
           onClick={() => {
-            handleOpenDetails(_id, product_name,
-              product_price,
-              product_img,);
+            handleOpenDetails(_id, product_name, product_price, product_img);
           }}
         >
           <Text>$ {product_price}</Text>
@@ -72,7 +66,6 @@ const ProductItems = ({
         >
           <Text>{product_type}</Text>
         </Box>
-         
       </Box>
       {/* ```````````````````````````````small screen ``````````````````````````````````*/}
 
@@ -85,12 +78,9 @@ const ProductItems = ({
         <Box
           width={{ base: "50%", sm: "40%" }}
           onClick={() => {
-            handleOpenDetails(_id,  product_name,
-              product_price,
-              product_img,);
+            handleOpenDetails(_id, product_name, product_price, product_img);
           }}
         >
-   
           <Image
             width={{ base: "60%", sm: "40%" }}
             src={product_img}
@@ -118,8 +108,6 @@ const ProductItems = ({
               ID- {_id}
             </Text>
           </Box>
-
-          
         </Box>
       </Box>
     </Box>
