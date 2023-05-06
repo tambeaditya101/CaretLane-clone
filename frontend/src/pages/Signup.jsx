@@ -15,11 +15,12 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Select,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 export default function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState("");
@@ -44,18 +45,28 @@ export default function Signup() {
           setGender("");
           setEmail("");
           setPass("");
-          alert("New user added");
+          Swal.fire("Good job!", "New user has been registered", "success");
+          //alert("New user added");
           navigate("/login");
         } else if (res.msg === "This email is already registered.") {
           setEmail("");
-          alert("Email already in use");
+          Swal.fire("Nah !", "Email already in use", "error");
+          //alert("Email already in use");
         } else if (res.msg === "Please fill all the details.") {
-          alert("Some fields are missing");
+          Swal.fire("Wait", "Some fields are missing", "question");
+          //alert("Some fields are missing");
         } else {
-          alert("Wrong credentials");
+          Swal.fire("Error", "Wrong credentials", "error");
+          //alert("Wrong credentials");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) =>
+        Swal.fire(
+          "Error",
+          "Something went wrong. Please try after sometime",
+          "error"
+        )
+      );
     //console.log(form);
   };
   return (
@@ -91,6 +102,7 @@ export default function Signup() {
                   <Input
                     type="text"
                     value={name}
+                    placeholder="enter your name"
                     onChange={(e) => setName(e.target.value)}
                   />
                 </FormControl>
@@ -98,11 +110,16 @@ export default function Signup() {
               <Box>
                 <FormControl id="gender">
                   <FormLabel>Gender</FormLabel>
-                  <Input
+
+                  {/* <Input
                     type="text"
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
-                  />
+                  /> */}
+                  <Select placeholder="Select">
+                    <option value="Male">M</option>
+                    <option value="Female">F</option>
+                  </Select>
                 </FormControl>
               </Box>
             </HStack>
@@ -110,6 +127,7 @@ export default function Signup() {
               <FormLabel>Email address</FormLabel>
               <Input
                 type="email"
+                placeholder="enter your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -118,6 +136,7 @@ export default function Signup() {
               <FormLabel>Password</FormLabel>
               <InputGroup>
                 <Input
+                  placeholder="enter your password"
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPass(e.target.value)}
