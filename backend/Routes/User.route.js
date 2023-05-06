@@ -33,7 +33,7 @@ userRouter.post("/login", async(req,res)=>{
       try {
         const {email,password} = req.body;
         const user = await UserModel.find({email});
-        console.log(user)
+        //console.log(user)
         if(user.length>0){
             const hashed_password = user[0].password;
             bcrypt.compare(password, hashed_password, function(err, result) {
@@ -50,6 +50,8 @@ userRouter.post("/login", async(req,res)=>{
         res.send({"msg": "Please fill all the fields"})
     }
 });
+
+
 
 module.exports = {
     userRouter
