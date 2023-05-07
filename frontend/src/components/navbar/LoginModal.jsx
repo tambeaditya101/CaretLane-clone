@@ -52,8 +52,6 @@ export const LoginModal = () => {
   );
 };
 
-
-
 // export const LoginModal=()=>{
 //   <Menu>
 //   <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
