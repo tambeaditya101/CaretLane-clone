@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { UserModel } = require("../models/User.model");
 const userRouter = express.Router();
-
+ 
 userRouter.post("/register",async (req,res)=>{
     if(req.body.name && req.body.email && req.body.gender && req.body.password){
         const {email, password} = req.body;
@@ -51,6 +51,14 @@ userRouter.post("/login", async(req,res)=>{
     }
 });
 
+userRouter.get("/",async (req,res)=>{
+    try {
+        let users=await UserModel.find()
+        res.status(200).send(users);
+    } catch (error) {
+        res.status(400).send({"msg" : "Something went wrong"})
+    }
+})
 module.exports = {
     userRouter
 }

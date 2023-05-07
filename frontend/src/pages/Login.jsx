@@ -34,6 +34,7 @@ export default function Login() {
       .then((res) => {
         console.log(res);
         if (res.msg === "login successfull" && res.token) {
+          localStorage.setItem("user", email)
           alert("Login Success");
           navigate("/");
         } else if (res.msg === "login failed") {
