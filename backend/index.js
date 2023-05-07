@@ -7,12 +7,12 @@ const { cartRouter } = require("./Routes/cart.route");
 const app = express();
 
 
-
 app.use(cors());
 app.use(express.json());
 app.use("/user",userRouter);
 app.use("/",productRouter)
 app.use("/cart",cartRouter);
+
 
 app.listen(8080, async () => {
   try {
