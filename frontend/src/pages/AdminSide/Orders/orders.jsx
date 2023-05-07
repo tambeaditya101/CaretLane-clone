@@ -19,9 +19,10 @@ const Orders = () => {
 
   const GetUserOrderDetails = async () => {
     let res = await axios.get(
-      `https://good-rose-kingfisher-tam.cyclic.app/order/admin`
+      `http://localhost:9080/orders`
     );
     setUserDetails(res.data);
+    console.log(res.data);
     return res.data;
   };
   useEffect(() => {
