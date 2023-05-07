@@ -49,14 +49,12 @@ cartRouter.patch("/product/update/:productID",async (req,res)=>{
             } else {
                 await CartModel.findByIdAndUpdate({_id:productID},payload);
                 const updatedProduct = await CartModel.findOne({_id:productID});
-                console.log(updatedProduct);
                 res.send(updatedProduct)
             }
         }else{
             res.send({"msg": "there is no product found with this particualr ID."})
         }
     } catch (err) {
-        console.log(err);
         res.status(404).send({"msg":"something went wrong, please try again later."});
     }
 });
