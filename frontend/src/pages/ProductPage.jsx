@@ -11,7 +11,9 @@ import { Select } from "@chakra-ui/react";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
 
+
 export default function ProductPage() {
+
   const [order, setOrder] = useState("");
   const dispatch = useDispatch();
   const { data, isLoading } = useSelector((state) => state.productReducer);
@@ -32,6 +34,7 @@ export default function ProductPage() {
   const handleChange = (e) => {
     setOrder(e.target.value);
   };
+  console.log(data)
 
   useEffect(() => {
     let params = {};
@@ -39,8 +42,6 @@ export default function ProductPage() {
     setParams(params);
     dispatch(getProducts(obj));
   }, [location.search, order]);
-  console.log("location", location);
-  console.log("order", order);
 
   return (
     <>
