@@ -34,7 +34,6 @@ export default function ProductPage() {
   const handleChange = (e) => {
     setOrder(e.target.value);
   };
-  console.log(data)
 
   useEffect(() => {
     let params = {};
