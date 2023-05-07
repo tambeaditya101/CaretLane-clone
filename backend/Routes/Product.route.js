@@ -1,6 +1,7 @@
 const {Router,use} = require("express");
 const { ProductModel } = require("../models/Product.model");
 const { Auth } = require("../middleware/Auth.middleware");
+const { UserModel } = require("../models/User.model");
 
 const productRouter = Router();
 
@@ -25,7 +26,7 @@ productRouter.get("/products",async (req,res)=>{
         if(type){
             query.product_type=type;
         }
-        console.log(query);
+        //console.log(query);
         if(order=="asc"){
             const data = await ProductModel.find(query).sort({product_price: 1});
             res.status(200).send(data);
@@ -42,19 +43,20 @@ productRouter.get("/products",async (req,res)=>{
     }
 });
 
-// minPrice=10000&&maxPrice=20000&&minWeight=5&&maxWeight=10&&type=Rings&&type=Earing
+// ?minPrice=10000&&maxPrice=20000&&minWeight=5&&maxWeight=10&&type=Rings&&type=Earing&&order=asc
 
 productRouter.get("/product/singleProduct/:productID",async (req,res)=>{
-    console.log(req.params.productID)
+    //console.log(req.params.productID)
     try {
         const product = await ProductModel.findById(req.params.productID);
-        console.log(product)
+        //console.log(product);
         if (product) {
             res.status(200).send(product);
         } else {
-            res.send({"msg":"there is no movie found with this particual ID."})
+            res.send({"msg":"there is no product found with this particual ID."})
         }
     } catch (err) {
+        console.log(err);
         res.status(404).send({"msg":"something went wrong, please try again later."})
     }
 });
@@ -93,13 +95,15 @@ productRouter.patch("/product/update/:productID",async (req,res)=>{
         //console.log(payload);
         const productID = req.params.productID;
         const userID = req.body.user_ID;
+        //console.log(userID)
         const product = await ProductModel.findOne({_id:productID});
+        //console.log(product.user_ID);
         if(userID !== product.user_ID){
             res.status(404).send({"msg":"Not Authorised."});
         }else{
             await ProductModel.findByIdAndUpdate({_id:productID},payload);
             const updatedProduct = await ProductModel.findOne({_id:productID});
-            console.log(updatedProduct);
+            //console.log(updatedProduct);
             res.send(updatedProduct)
         }
     } catch (error) {
@@ -131,6 +135,22 @@ productRouter.delete("/product/remove/:productID", async(req,res)=>{
         res.status(404).send({"msg":"something went wrong, please try again later."})
     }
     
+});
+
+
+// This route is only for admin, to get the list of all the users/customers of our website
+productRouter.get("/listOfUsers",async(req,res)=>{
+    try {
+        const usersLists = await UserModel.find();
+        if(usersLists.length){
+            res.status(200).send(usersLists);
+        }else{
+            res.send({"msg": "no users"});
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(404).send({"msg": "something went wrong, please try again later..."});
+    }
 });
 
 module.exports = {
