@@ -48,7 +48,6 @@ const AdminMenu = () => {
           flexDirection={"column"}
           w={{ md: "30%", lg: "20%" }}
           padding={"15px"}
-          // backgroundColor={"#033E3E"}
           backgroundColor={"black"}
           color={"white"}
           position={"fixed"}
@@ -102,9 +101,9 @@ const AdminMenu = () => {
             border={"none"}
             _focus={{ outline: "none" }}
           >
-            Listings
+            Products
           </Tab>
-          <Tab
+           <Tab
             ref={orderRef}
             mb={"5px"}
             borderRadius={"5px"}
