@@ -37,8 +37,11 @@ export default function Login() {
       .then((res) => {
         console.log(res);
         if (res.msg === "login successfull" && res.token) {
+ 
+          localStorage.setItem("user", email) 
           localStorage.setItem('token',res.token)
           Swal.fire("Good job!", "Login Successfull", "success");
+ 
           navigate("/");
         } else if (res.msg === "login failed") {
           Swal.fire("Nah !", "Wrong credentials", "error");
