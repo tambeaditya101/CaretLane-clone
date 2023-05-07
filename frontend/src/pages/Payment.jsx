@@ -28,9 +28,9 @@ import { useToast } from '@chakra-ui/react'
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
-import { handleUserPayment } from "../redux/Auth/action";
+import Footer from "../components/footer/Footer";
+import Navbar from "../components/navbar/Navbar";
+// import { handleUserPayment } from "../redux/Auth/action";
 
 
 
@@ -58,7 +58,7 @@ const Payment = () => {
       pincode: +pincode,
       country,
     };
-    dispatch(handleUserPayment(userData));
+    // dispatch(handleUserPayment(userData));
     toast({
       position: "top",
       title: "Order placed",
@@ -104,7 +104,7 @@ const Payment = () => {
         alignItems="center"
         gap={"0.2px"}
         margin="auto"
-        paddingTop={"100px"}
+        paddingTop={"10px"}
       >
         <Stack
           flexDirection={{
