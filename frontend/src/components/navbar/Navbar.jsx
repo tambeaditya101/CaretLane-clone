@@ -1,6 +1,6 @@
 import React from "react";
 import "./navbar.css";
-import logo from "./logo.png";
+import logo1 from "./logo1.jpeg";
 import { MdLocationPin } from "react-icons/md";
 import { TbHeartFilled } from "react-icons/tb";
 import { GiShoppingBag } from "react-icons/gi";
@@ -11,9 +11,8 @@ import { IoStorefrontOutline } from "react-icons/io5";
 import { IoBagAddOutline } from "react-icons/io5";
 import { AiOutlineGold } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { LoginModal } from "./LoginModal";
 import { Navbardropdown } from "../navbardropdown/Navbardropdown";
-
+import { LoginModal } from "./LoginModal";
 const Navbar = () => {
   return (
     <div id="nav__main">
@@ -22,7 +21,7 @@ const Navbar = () => {
         <div id="nav__logo">
           <Link to="/">
             {" "}
-            <img src={logo} alt="logo" height="40%" width="40%" />
+            <img src={logo1} alt="logo" width={"50%"} />
           </Link>
         </div>
 
