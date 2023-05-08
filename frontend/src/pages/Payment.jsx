@@ -30,6 +30,7 @@ import { useDispatch,useSelector} from "react-redux";
 
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -49,6 +50,7 @@ const Payment = () => {
   const [country, setCountry] = useState("India");
   const dispatch = useDispatch();
   const toast = useToast()
+  const navigate = useNavigate()
 
   const data = useSelector((state)=>state.cartReducer.data)
   
@@ -71,7 +73,8 @@ const Payment = () => {
       duration: 4000,
       isClosable: true,
     });
-    window.location.href = "/"
+    // window.location.href = "/"
+    return navigate('/')
    
   };
 
@@ -96,7 +99,7 @@ const Payment = () => {
    
   }
 
-  let discount;
+  let discount=1000;
   if(grandTotal>20000){
    discount=grandTotal*(2/100);
   }else if(grandTotal>50000){
