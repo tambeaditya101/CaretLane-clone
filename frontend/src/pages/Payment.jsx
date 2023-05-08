@@ -30,6 +30,7 @@ import { useDispatch,useSelector} from "react-redux";
 
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/Navbar";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -86,6 +87,7 @@ const Payment = () => {
   const [data, setData] = useState([])
   const dispatch = useDispatch();
   const toast = useToast()
+
   const token=localStorage.getItem("token")
   console.log(token)
  const fetChData=()=>{
@@ -109,6 +111,11 @@ const Payment = () => {
  }, [])
  
   
+
+  const navigate = useNavigate()
+
+  const data = useSelector((state)=>state.cartReducer.data)
+
   
   const handlePayment = () => {
     let userData = {
@@ -130,6 +137,11 @@ const Payment = () => {
       duration: 4000,
       isClosable: true,
     });
+
+
+
+    // window.location.href = "/"
+    return navigate('/')
 
    
 
@@ -168,7 +180,7 @@ const Payment = () => {
    
   }
 
-  let discount;
+  let discount=1000;
   if(grandTotal>20000){
    discount=grandTotal*(2/100);
   }else if(grandTotal>50000){

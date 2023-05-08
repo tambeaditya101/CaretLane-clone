@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.css";
 import logo1 from "./logo1.jpeg";
 import { MdLocationPin } from "react-icons/md";
@@ -12,7 +12,7 @@ import { IoBagAddOutline } from "react-icons/io5";
 import { AiOutlineGold } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { Navbardropdown } from "../navbardropdown/Navbardropdown";
-
+import { LoginModal } from "./LoginModal";
 
 import {
   Menu,
@@ -30,6 +30,13 @@ import {
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure(); 
+  const [flag,setFlag] = useState(false)
+
+  const handleLogout = ()=>{
+    localStorage.setItem('token','')
+    localStorage.setItem('user','')
+    setFlag(!flag)
+  }
 
   return (
     <div id="nav__main">
@@ -82,26 +89,32 @@ const Navbar = () => {
               />
             </div>
             <div>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
-                />
-              </MenuButton>
-              <MenuList >
-                <MenuItem  >{localStorage.getItem("user")}</MenuItem>
-                <MenuDivider />
-                <MenuItem bg="red">Log out</MenuItem>
-              </MenuList>
-            </Menu>
+              <div>
+                {
+                  localStorage.getItem('token')?<Menu>
+                  <MenuButton
+                    as={Button}
+                    rounded={'full'}
+                    variant={'link'}
+                    cursor={'pointer'}
+                    minW={0}>
+                    <Avatar
+                      size={'sm'}
+                      src={
+                        'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                      }
+                    />
+                  </MenuButton>
+                  <MenuList >
+                    
+                    <MenuItem  >{localStorage.getItem("user")}</MenuItem>
+                    <MenuDivider />
+                    <MenuItem onClick={()=>handleLogout()} bg="red">Log out</MenuItem>
+                  </MenuList>
+                </Menu>:<LoginModal/>
+                }
+              </div>
+            
             </div>
             <div>
               <Link to="">

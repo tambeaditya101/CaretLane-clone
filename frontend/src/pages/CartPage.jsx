@@ -2,16 +2,16 @@ import { Box, Heading, SimpleGrid,Image,Button , Center, HStack, Text, Icon, use
 import {useEffect, useState } from "react"
 import { getCartData,deleteCartItem,updateQuantity } from "../redux/Cart/action"
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {RiDeleteBin6Line} from 'react-icons/ri'
 import Navbar from '../components/navbar/Navbar'
-import axios from "axios"
 
 export default function CartPage(){
 
     const toast = useToast()
     const dispatch = useDispatch()
     const data = useSelector((state)=>state.cartReducer.data)
+    const navigate = useNavigate()
     
     
     const [flag,setFlag] = useState(false)
@@ -50,6 +50,8 @@ export default function CartPage(){
         setFlag(!flag)
         }
     }
+
+    
 
 
 

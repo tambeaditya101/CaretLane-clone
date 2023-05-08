@@ -9,6 +9,10 @@ import SingleProductPage from "../pages/SingleProductPage";
 import CartPage from "../pages/CartPage";
 import Payment from "../pages/Payment";
 
+
+import { PrivateRoute } from "./PrivateRoute";
+
+
 function Allroutes() {
   return (
     <Routes>
@@ -17,10 +21,16 @@ function Allroutes() {
       <Route path="/register" element={<Signup />} />
       <Route path='/' element={<Home/>}></Route>
       <Route path='/products' element={<ProductPage/>} ></Route>
+
       <Route path='/product/singleProduct/:productID' element={<SingleProductPage/>} ></Route>
       <Route path='/cart' element={<CartPage/>} ></Route>
       <Route path='/payment' element={<Payment/>} ></Route>
      
+
+      <Route path='/product/singleProduct/:productID' element={<SingleProductPage/>}></Route>
+      <Route path='/cart' element={<PrivateRoute><CartPage/></PrivateRoute>} ></Route>
+      <Route path='/paymentpage' element={<PrivateRoute><Payment/></PrivateRoute>}  ></Route>
+
     </Routes>
   );
 

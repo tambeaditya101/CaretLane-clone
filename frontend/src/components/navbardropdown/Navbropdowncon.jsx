@@ -6,7 +6,7 @@ export const Navbropdowncon = () => {
   return (
     <div className={styles.navdropcon}>
       <div>
-        <h3>SHOP BY STYLE</h3>
+        <h4>SHOP BY STYLE</h4>
         <div className={styles.underline}></div>
         <div className={styles.shopBystyles}>
           <div>
@@ -19,7 +19,7 @@ export const Navbropdowncon = () => {
                   />
                 </div>
                 <span>
-                  <Link to="*">ENGAGEMENT</Link>
+                  <Link to="/products">ENGAGEMENT</Link>
                 </span>
               </li>
               <li>
@@ -30,7 +30,7 @@ export const Navbropdowncon = () => {
                   />
                 </div>
                 <span>
-                  <Link to="*">COUPLE RINGS</Link>
+                  <Link to="/products">COUPLE RINGS</Link>
                 </span>
               </li>
               <li>
@@ -42,7 +42,7 @@ export const Navbropdowncon = () => {
                 </div>
                 <span>
                   {" "}
-                  <Link to="*"> CASUAL</Link>
+                  <Link to="/products"> CASUAL</Link>
                 </span>
               </li>
 
@@ -54,7 +54,7 @@ export const Navbropdowncon = () => {
                   />
                 </div>
                 <span>
-                  <Link to="*">ADJUSTABLE RINGS</Link>
+                  <Link to="/products">ADJUSTABLE RINGS</Link>
                 </span>
               </li>
 
@@ -66,7 +66,7 @@ export const Navbropdowncon = () => {
                   />
                 </div>
                 <span>
-                  <Link to="*">SILVER RINGS</Link>
+                  <Link to="/products">SILVER RINGS</Link>
                 </span>
               </li>
             </ul>
@@ -81,7 +81,7 @@ export const Navbropdowncon = () => {
                   />
                 </div>
                 <span>
-                  <Link to="*">PLANTINUM RINGS</Link>
+                  <Link to="/products">PLANTINUM RINGS</Link>
                 </span>
               </li>
               <li>
@@ -92,7 +92,7 @@ export const Navbropdowncon = () => {
                   />
                 </div>
                 <span>
-                  <Link to="*">COCKTAIL</Link>
+                  <Link to="/products">COCKTAIL</Link>
                 </span>
               </li>
               <li>
@@ -103,7 +103,7 @@ export const Navbropdowncon = () => {
                   />
                 </div>
                 <span>
-                  <Link to="*">BANDS</Link>
+                  <Link to="/products">BANDS</Link>
                 </span>
               </li>
 
@@ -115,7 +115,7 @@ export const Navbropdowncon = () => {
                   />
                 </div>
                 <span>
-                  <Link to="*">PROMISE RINGS</Link>
+                  <Link to="/products">PROMISE RINGS</Link>
                 </span>
               </li>
             </ul>
@@ -123,7 +123,7 @@ export const Navbropdowncon = () => {
         </div>
       </div>
       <div>
-        <h3>SHOP BY METAL & STONE</h3>
+        <h4>SHOP BY STONE</h4>
         <div className={styles.underline}></div>
         <ul className={styles.shopBystyles1}>
           <li>
@@ -134,7 +134,7 @@ export const Navbropdowncon = () => {
               />
             </div>
             <span>
-              <Link to="*">GEMSTONE</Link>
+              <Link to="/products">GEMSTONE</Link>
             </span>
           </li>
           <li>
@@ -223,7 +223,7 @@ export const Navbropdowncon = () => {
         </ul>
       </div>
       <div className={styles.shopBY}>
-        <h3>SHOP BY</h3>
+        <h4>SHOP BY</h4>
         <div className={styles.underline}></div>
         <ul>
           <li>FOR MEN</li>
