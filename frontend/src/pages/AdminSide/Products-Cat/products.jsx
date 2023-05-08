@@ -95,13 +95,19 @@ const Products = () => {
  
   return (
     <Box
-      color={"white"}
+      color={"black"}
       minH={"100vh"}
       mt={{ base: "60px", md: "0px" }}
       padding={"20px"}
-      bg={"#0c0e1f"}
-    >
-      <Heading>Products</Heading>
+      bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"      >
+      <Text
+        bgGradient='linear(to-l, #7928CA, #FF0080)'
+        bgClip='text'
+        fontSize='6xl'
+        fontWeight='extrabold'
+      >
+        Products
+      </Text>
       <Text color={"#00b5b8"}>List of Products</Text>
       {/* Table of all products */}
       <Box mt={"30px"} w={"100%"}>
@@ -172,13 +178,14 @@ const Products = () => {
   {/* ``````````````````````````````````````````Modal`````````````````````````````````````` */}
 
   <Modal
-        closeOnOverlayClick={false}
+      
+         closeOnOverlayClick={false}
         isOpen={isOpen}
         onClose={onClose}
         size={{ base: "sm", md: "md" }}
       >
         <ModalOverlay />
-        <ModalContent bg={"#0c0e1f"} color={"white"}>
+        <ModalContent  bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"  color={"black"}>
           <ModalHeader>Edit Listing</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6} textAlign={"center"}>

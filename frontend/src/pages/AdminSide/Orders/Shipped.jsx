@@ -6,16 +6,23 @@ import { useToast } from "@chakra-ui/react";
 const Shipped = ({ GetUserOrderDetails, userDetails }) => {
   const toast = useToast();
 
-  const handleCompleteOrder = async ( ) => {
-   
-    try {     
+  const handleShipOrder = async (oID, uID) => {
+
+    try {
+      let res = await axios.patch(
+        `http://localhost:8080/order/orderStatus/${uID}/prod/${oID}`,
+        {
+          order_status: "Shipped",
+        }
+      );
       toast({
         title: "Updated Successfully.",
-        description: "Product Marked as Completed Successfully",
+        description: "Product Marked as Ship Successfully",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
+      GetUserOrderDetails();
     } catch (error) {
       toast({
         title: "Invalid Request",
@@ -88,7 +95,10 @@ const Shipped = ({ GetUserOrderDetails, userDetails }) => {
   
       {userDetails.map((user) =>
         user.product.map((order) =>
-          order.order_status === "Shipped" ? (
+        
+          order.order_status == "Shipped" ?
+           (
+            
             <Box
               key={Math.random()}
               boxShadow="rgba(0, 0, 0, 0.4) 0px 1px 4px, rgba(0, 0, 0, 0.3) 0px 5px 10px -1px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset"
@@ -105,20 +115,24 @@ const Shipped = ({ GetUserOrderDetails, userDetails }) => {
                   width={{ base: "10%", md: "12%" }}
                   fontSize={{ base: "12px", md: "11px", lg: "14px" }}
                 >
-                  <Text>{user.userID.name},</Text>
-                  <Text color={"gold"}>{user.userID.number}</Text>
+                  <Text>{user.first_name},</Text>
+                  <Text color={"blue.700"}>{user._id  }</Text>
                 </Box>
                 <Box
                   width={{ base: "10%", md: "17%" }}
                   fontSize={{ base: "12px", md: "12px", lg: "14px" }}
                 >
-                  <Text>{user.address}</Text>
+                  <Text>{`${user.city}`}</Text>
+                  <Text>{`${user.address}`}</Text>
+                  <Text>{`${user.pincode}`}</Text>
                 </Box>
                 <Box width={{ base: "10%", md: "10%", lg: "7%" }}>
                   <Image
                     width={"80%"}
-                    src={order.image}
-                    alt={order.category}
+                    src={order.product_img
+                      }
+                    alt={order.product_img
+                      }
                   ></Image>
                 </Box>
 
@@ -135,7 +149,7 @@ const Shipped = ({ GetUserOrderDetails, userDetails }) => {
                   fontSize={{ base: "12px", md: "12px", lg: "14px" }}
                   textAlign={"center"}
                 >
-                  <Text color={"gold"}>$ {order.price}</Text>
+                  <Text color={"blue.900"}>₹ {order.product_price}</Text>
                 </Box>
                 <Box
                   width={{ base: "10%", md: "10%" }}
@@ -147,13 +161,13 @@ const Shipped = ({ GetUserOrderDetails, userDetails }) => {
                 <Box width={{ base: "20%", md: "15%" }} textAlign={"center"}>
                   <Button
                     size={"sm"}
-                    colorScheme={"blue"}
+                    colorScheme={"yellow"}
                     p={{ md: 1, lg: 5 }}
-                    // onClick={() => {
-                    //   handleCompleteOrder(order._id, user._id);
-                    // }}
+                    onClick={() => {
+                      handleShipOrder(order._id, user._id);
+                    }}
                   >
-                    Complete
+                   Completed
                   </Button>
                 </Box>
               </Box>
@@ -168,8 +182,8 @@ const Shipped = ({ GetUserOrderDetails, userDetails }) => {
                   <Box
                     h="25px"
                     width={"58px"}
-                    border={"1px solid blue"}
-                    bg={"blue.500"}
+                    border={"1px solid Yellow"}
+                    bg={"yellow.500"}
                     mb={"10px"}
                     color="black"
                     display={"flex"}
@@ -177,16 +191,16 @@ const Shipped = ({ GetUserOrderDetails, userDetails }) => {
                     alignItems={"center"}
                   >
                     <Text as="b" fontSize={{ base: "10px", sm: "12px" }}>
-                      Shipped
+                      Pending
                     </Text>
                   </Box>
                   <Image
                     width={{ base: "60%", sm: "40%" }}
-                    src={order.image}
-                    alt={order.category}
+                    src={order.product_img}
+                    alt={order.product_name}
                   ></Image>
                   <Text fontWeight={"bold"} fontSize={"lg"} mt={"20px"}>
-                    $ {order.price}
+                    $ {order.product_price}
                   </Text>
                 </Box>
                 {/* ```````````````````````````````````right Div````````````````````````````` */}
@@ -198,7 +212,7 @@ const Shipped = ({ GetUserOrderDetails, userDetails }) => {
                 >
                   <Box>
                     <Text fontSize={{ base: "13px", sm: "14px" }}>
-                      {order.details}
+                      {order.product_desc}
                     </Text>
                     <Text
                       as={"mark"}
@@ -212,7 +226,7 @@ const Shipped = ({ GetUserOrderDetails, userDetails }) => {
                       mt={"10px"}
                       fontSize={{ base: "13px", sm: "14px" }}
                     >
-                      {user.userID.name}, {user.userID.number}
+                      {user.first_name}, {user._id}
                     </Text>
                     <Text
                       fontWeight={"bold"}
@@ -226,12 +240,12 @@ const Shipped = ({ GetUserOrderDetails, userDetails }) => {
                   <Button
                     mt={"10px"}
                     size={"sm"}
-                    colorScheme={"blue"}
+                    colorScheme={"yellow"}
                     onClick={() => {
-                      handleCompleteOrder(order._id, user._id);
+                      handleShipOrder(order._id, user._id);
                     }}
                   >
-                    Complete
+                    Completed
                   </Button>
                 </Box>
               </Box>

@@ -28,9 +28,9 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 const AccountInfo = () => {
   const [details, setDetails] = useState({
     Name: "Hemensan",
-    EmailId: "Hemensan@diamond.com",
+    EmailId: "Hemensan@gmail.com",
     Phone: "6264866332",
-    Password: "@Hemensan",
+    Password: "hemensan",
   });
   const [show, setShow] = useState(false);
  
@@ -41,14 +41,25 @@ const AccountInfo = () => {
  
   return (
     <Box
+      
       color={"white"}
       minH={"100vh"}
       mt={{ base: "60px", md: "0px" }}
       padding={"20px"}
-      bg={"#0c0e1f"}
+      // bg={"#0c0e1f"}
+      bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"  
     >
-      <Heading>My Acccount</Heading>
-      <Text color={"#00b5b8"}>My Account</Text>
+      <Text
+        bgGradient='linear(to-l, #7928CA, #FF0080)'
+        bgClip='text'
+        fontSize='5xl'
+        fontWeight='extrabold'
+        margin={"auto"}
+        textAlign={"center"}
+      >
+         Admin Account
+      </Text>
+      <Text color={"pink.700"} textAlign={"center"} >Admin</Text>
       <Box textAlign={"center"} mt={"30px"}>
         <Avatar
           size={"2xl"}

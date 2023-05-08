@@ -16,29 +16,48 @@ import axios from "axios";
 import Return from "./Return";
 const Orders = () => {
   const [userDetails, setUserDetails] = useState([]);
-
-  const GetUserOrderDetails = async () => {
-    let res = await axios.get(
-      `http://localhost:9080/orders`
-    );
-    setUserDetails(res.data);
-    console.log(res.data);
-    return res.data;
+   
+  const GetUserOrderDetails = () => {
+     axios.get(
+      `http://localhost:8080/order`,{
+        headers : {
+          "Authorization" : `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type" : "application/json"
+        }
+      }
+    ).then((res)=>{
+      console.log(res.data)
+      setUserDetails(res.data )
+    })
+    // setUserDetails(res );
+    // console.log(res);
+    // return res.data;
   };
   useEffect(() => {
     GetUserOrderDetails();
   }, []);
+
   return (
     <Box
-      color={"white"}
+      color={"black"}
       minH={"100vh"}
       mt={{ base: "60px", md: "0px" }}
       padding={"20px"}
-      bg={"#0c0e1f"}
+      // bg={"#0c0e1f"}
+      bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"  
     >
-      <Heading>Orders</Heading>
-      <Text color={"#00b5b8"}>List of Orders</Text>
-      <Box mt={"30px"} w={"100%"}>
+       <Text
+        bgGradient='linear(to-l, #7928CA, #FF0080)'
+        bgClip='text'
+        fontSize='5xl'
+        fontWeight='extrabold'
+        margin={"auto"}
+        textAlign={"center"}
+      >
+        Customers
+      </Text>
+      <Text color={"pink.700"} textAlign={"center"} >List of Orders</Text>
+      <Box mt={"30px"} w={"100%"} color={"pink.700"} fontWeight={"bold"}>
         <Tabs>
           <TabList borderBottom={"1px solid gray"}>
             <Tab

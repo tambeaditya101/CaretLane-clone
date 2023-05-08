@@ -39,14 +39,25 @@ const Customers = () => {
   
   return (
     <Box
-      color={"white"}
+      color={"pink.700"}
+      fontWeight={"bold"}
       minH={"100vh"}
       mt={{ base: "60px", md: "0px" }}
       padding={"20px"}
-      bg={"#0c0e1f"}
+      // bg={"#0c0e1f"}
+      bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"  
     >
-      <Heading>Customers</Heading>
-      <Text color={"#00b5b8"}>List of Customers</Text>
+     
+      <Text
+        bgGradient='linear(to-l, #7928CA, #FF0080)'
+        bgClip='text'
+        fontSize='6xl'
+        fontWeight='extrabold'
+        margin={"auto"}
+        textAlign={"center"}
+      >
+        Customers
+      </Text>
 
       <Box mt={"30px"} width={{ base: "100%", md: "50%", lg: "30%" }}>
      
