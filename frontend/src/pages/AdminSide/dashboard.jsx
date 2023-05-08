@@ -7,17 +7,17 @@ import { Chart as ChartJS } from "chart.js/auto";
 
 const Dashboard = () => {
   const [userData, setUserData] = useState({
-    labels: [ "Rings","MangalSutra","EarRings","Necklace","Bangles"],
+    labels: ["Rings", "MangalSutra", "EarRings", "Necklace", "Bangles"],
     datasets: [
       {
         label: "Users Gained",
-        data: [55,94,47,55,67],
+        data: [55, 94, 47, 55, 67],
         backgroundColor: [
-          "rgba(75,192,192,1)",
-          "#ecf0f1",
-          "#50AF95",
-          "#f3ba2f",
-          "#2a71d0",
+          "#d297de",
+          "#aef2e9",
+          "#ffc4e9",
+          "#70e06e",
+          "#e8c4bc",
         ],
         borderColor: "black",
         borderWidth: 2,
@@ -26,17 +26,25 @@ const Dashboard = () => {
   });
 
   return (
-      <Box > 
-         <Box  >
-            <Bar  data ={userData}/>     
-         </Box>
-         <Box >
-           <Line data={userData} /> 
-         </Box>
-         <Box >
-         <Pie data={userData} />    
-         </Box>      
+    <Box  bgGradient='linear(to-l, blue.100, pink.100)' >
+      <Text
+        bgGradient='linear(to-l, #7928CA, #FF0080)'
+        bgClip='text'
+        fontSize='6xl'
+        fontWeight='extrabold'
+      >
+        Welcome to DashBoard
+      </Text>
+      <Box  >
+        <Bar data={userData} />
       </Box>
+      <Box >
+        <Line data={userData} />
+      </Box>
+      <Box >
+        <Pie data={userData} />
+      </Box>
+    </Box>
   );
 };
 

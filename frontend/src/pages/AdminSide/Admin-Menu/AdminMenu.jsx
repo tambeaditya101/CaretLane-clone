@@ -41,15 +41,16 @@ const AdminMenu = () => {
 
   return (
     <>
-      <Tabs display={"flex"}>
+      <Tabs display={"flex"} >
         <TabList
           display={{ base: "none", md: "inherit" }}
           textAlign={"center"}
           flexDirection={"column"}
           w={{ md: "30%", lg: "20%" }}
           padding={"15px"}
-          backgroundColor={"black"}
-          color={"white"}
+          // backgroundColor={"black"}
+          bgGradient='linear(to-l,  pink.200, blue.300)'
+          color={"pink.700"}
           position={"fixed"}
           top={0}
           left={0}
@@ -67,7 +68,7 @@ const AdminMenu = () => {
           </Box>
           <Box textAlign={"center"} mt={"20px"} mb={"20px"}>
             <Text>{"Hemensan"}</Text>
-            <Text color={"gray.400"}>{"Hemensan@admin.com"}</Text>
+            <Text color={"pink.700"}>{"Hemensan@admin.com"}</Text>
           </Box>
 
           <Tab
@@ -77,7 +78,7 @@ const AdminMenu = () => {
             // transition={"0.8s"}
             _selected={{
               color: "white",
-              bg: "#00b5b8",
+              bgGradient:'linear(to-l,  pink.800, blue.600)',
               transform: "scale(1.05)",
               transition: "0.2s",
             }}
@@ -94,7 +95,7 @@ const AdminMenu = () => {
             // transition={"0.8s"}
             _selected={{
               color: "white",
-              bg: "#00b5b8",
+              bgGradient:'linear(to-l,  pink.800, blue.600)',
               transform: "scale(1.05)",
               transition: "0.2s",
             }}
@@ -110,7 +111,7 @@ const AdminMenu = () => {
             // transition={"0.8s"}
             _selected={{
               color: "white",
-              bg: "#00b5b8",
+              bgGradient:'linear(to-l,  pink.800, blue.600)',
               transform: "scale(1.05)",
               transition: "0.2s",
             }}
@@ -126,7 +127,7 @@ const AdminMenu = () => {
             // transition={"0.8s"}
             _selected={{
               color: "white",
-              bg: "#00b5b8",
+              bgGradient:'linear(to-l,  pink.800, blue.600)',
               transform: "scale(1.05)",
               transition: "0.2s",
             }}
@@ -146,7 +147,7 @@ const AdminMenu = () => {
             // transition={"0.8s"}
             _selected={{
               color: "white",
-              bg: "#00b5b8",
+              bgGradient:'linear(to-l,  pink.800, blue.600)',
               transform: "scale(1.05)",
               transition: "0.2s",
             }}

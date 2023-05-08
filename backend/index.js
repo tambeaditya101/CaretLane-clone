@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/user",userRouter);
-app.use("/",productRouter)
+app.use("/",productRouter);
 app.use("/cart",cartRouter);
 app.use("/order",OrderRouter)
  

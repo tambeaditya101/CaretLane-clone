@@ -39,11 +39,12 @@ const Customers = () => {
   
   return (
     <Box
-      color={"white"}
+      color={"black"}
       minH={"100vh"}
       mt={{ base: "60px", md: "0px" }}
       padding={"20px"}
-      bg={"#0c0e1f"}
+      // bg={"#0c0e1f"}
+      bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"  
     >
       <Heading>Customers</Heading>
       <Text color={"#00b5b8"}>List of Customers</Text>

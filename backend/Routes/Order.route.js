@@ -4,7 +4,7 @@ const { OrderModel } = require("../models/Order.model");
 
 const OrderRouter = Router();
 
-OrderRouter.get("/", Auth , async (req, res) => {
+OrderRouter.get("/"  , async (req, res) => {
   const user_ID = req.body.user_ID;
   try {
     const data = await OrderModel.find({ user_ID: user_ID }).populate("user_ID", [
@@ -19,7 +19,7 @@ OrderRouter.get("/", Auth , async (req, res) => {
 });
 
 OrderRouter.post("/add", Auth , async (req, res) => {
-    req.body.product.order_status="pending"
+   
   try {
     const data = new OrderModel(req.body);
     await data.save();
