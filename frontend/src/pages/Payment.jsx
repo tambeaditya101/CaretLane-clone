@@ -134,20 +134,20 @@ const Payment = () => {
    
 
 
-//     fetch(`http://localhost:8080/cart/product/add`,{
-//   method:"POST",
-//   body:JSON.stringify({userData}),
-//   headers:{
-//     "Content-Type":"application/json",
-//     "Authorization":`Bearer ${JSON.parse(localStorage.getItem("token"))}`
-//   }
-// })
-// .then(res=> res.json()
-// ).then((res)=>{
-//   console.log(res)
-// }).catch((err)=>{
-//   console.log(err);
-// })
+    fetch(`http://localhost:8080/cart/product/add`,{
+  method:"POST",
+  body:JSON.stringify({userData}),
+  headers:{
+    "Content-Type":"application/json",
+    "Authorization":`Bearer ${JSON.parse(localStorage.getItem("token"))}`
+  }
+})
+.then(res=> res.json()
+).then((res)=>{
+  console.log(res)
+}).catch((err)=>{
+  console.log(err);
+})
 
     window.location.href = "/"
    
