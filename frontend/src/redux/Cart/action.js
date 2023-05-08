@@ -16,7 +16,7 @@ export const getCartData = (dispatch)=>{
 
 export const deleteCartItem = (id)=>{
   return axios.delete(`${process.env.REACT_APP_BASE_URL}/cart/product/remove/${id}`,
-  {headers:{'Authorization': `Bearer ${localStorage.getItem('token')}`}})
+  {headers:{'Authorization': `Bearer ${localStorage.getItem('token')}`}}).then((res)=>console.log(res)).catch((err)=>console.log(err))
 }
 
 export const updateQuantity = (value,id)=>{
