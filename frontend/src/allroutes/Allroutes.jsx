@@ -7,6 +7,7 @@ import Signup from "../pages/Signup";
 import Admin from "../pages/Admin";
 import SingleProductPage from "../pages/SingleProductPage";
 import CartPage from "../pages/CartPage";
+import Payment from "../pages/Payment";
 
 function Allroutes() {
   return (
@@ -18,6 +19,8 @@ function Allroutes() {
       <Route path='/products' element={<ProductPage/>} ></Route>
       <Route path='/product/singleProduct/:productID' element={<SingleProductPage/>} ></Route>
       <Route path='/cart' element={<CartPage/>} ></Route>
+      <Route path='/payment' element={<Payment/>} ></Route>
+     
     </Routes>
   );
 

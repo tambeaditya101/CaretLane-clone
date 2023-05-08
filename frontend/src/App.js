@@ -10,11 +10,7 @@ function App() {
 
        <Allroutes />
      
-     
-
- 
- 
-
+  
     </div>
   );
 }
