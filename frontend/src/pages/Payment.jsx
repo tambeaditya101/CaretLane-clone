@@ -95,7 +95,7 @@ const Payment = () => {
      method : "GET",
      headers : {
       "content-type" : "Application/json",
-      // "Authorization" : `Bearer ${token}`
+      "Authorization" : `Bearer ${token}`
      }
   })
   .then(res=> res.json())
