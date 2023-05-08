@@ -37,7 +37,8 @@ const AdminDrawer = ({
       >
         <DrawerOverlay />
         <DrawerContent
-          backgroundColor={"#0c0e1f"}
+          // backgroundColor={"#0c0e1f"}
+          bgGradient='linear(to-l, blue.100, pink.100)'
           color={"white"}
           textAlign={"center"}
         >

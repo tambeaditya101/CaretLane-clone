@@ -41,7 +41,7 @@ const AdminMenu = () => {
 
   return (
     <>
-      <Tabs display={"flex"} >
+      <Tabs display={"flex"}   >
         <TabList
           display={{ base: "none", md: "inherit" }}
           textAlign={"center"}
@@ -51,6 +51,7 @@ const AdminMenu = () => {
           // backgroundColor={"black"}
           bgGradient='linear(to-l,  pink.200, blue.300)'
           color={"pink.700"}
+          fontWeight={"bold"}
           position={"fixed"}
           top={0}
           left={0}
@@ -68,7 +69,7 @@ const AdminMenu = () => {
           </Box>
           <Box textAlign={"center"} mt={"20px"} mb={"20px"}>
             <Text>{"Hemensan"}</Text>
-            <Text color={"pink.700"}>{"Hemensan@admin.com"}</Text>
+            <Text color={"pink.700"} fontWeight={"bold"} >{"Hemensan@admin.com"}</Text>
           </Box>
 
           <Tab
@@ -76,6 +77,7 @@ const AdminMenu = () => {
             mb={"5px"}
             borderRadius={"5px"}
             // transition={"0.8s"}
+            fontWeight={"bold"}
             _selected={{
               color: "white",
               bgGradient:'linear(to-l,  pink.800, blue.600)',
@@ -92,6 +94,7 @@ const AdminMenu = () => {
             ref={prodRef}
             mb={"5px"}
             borderRadius={"5px"}
+            fontWeight={"bold"}
             // transition={"0.8s"}
             _selected={{
               color: "white",
@@ -108,6 +111,7 @@ const AdminMenu = () => {
             ref={orderRef}
             mb={"5px"}
             borderRadius={"5px"}
+            fontWeight={"bold"}
             // transition={"0.8s"}
             _selected={{
               color: "white",
@@ -124,6 +128,7 @@ const AdminMenu = () => {
             ref={customerRef}
             mb={"5px"}
             borderRadius={"5px"}
+            fontWeight={"bold"}
             // transition={"0.8s"}
             _selected={{
               color: "white",
@@ -143,6 +148,7 @@ const AdminMenu = () => {
           <Tab
             ref={accountRef}
             mb={"5px"}
+            fontWeight={"bold"}
             borderRadius={"5px"}
             // transition={"0.8s"}
             _selected={{
@@ -159,6 +165,7 @@ const AdminMenu = () => {
           <Link to={"/"}>
             {" "}
             <Button
+            fontWeight={"bold"}
               width={"100%"}
               mt={"5px"}
               variant={"solid"}
