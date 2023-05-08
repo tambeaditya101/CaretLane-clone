@@ -35,33 +35,97 @@ import { useNavigate } from "react-router-dom";
 
 
 
+// const initState={
+//   first_name= "Hemensan",
+// "last_name= "Mahilange",
+// "mobile"= 123485934,
+// "country"= "India",
+// "address": "Chhattisgarh",
+// "city": "Janjgir",
+// "pincode": 495557,
+// "totalPrice": 1000,
+// "product": [
+//     {
+//       "_id": "645648d7caea51a505fac450",
+//       "product_img": "https://cdn.caratlane.com/media/catalog/product/J/B/JB01163-1RP600_1_lar.jpg",
+//       "product_name": "Malisa Diamond Bangle",
+//       "product_price": 31999,
+//       "product_desc": "Malisa Diamond Bangle",
+//       "product_weight": 11,
+//       "product_type": "Bangles",
+//        "order-status" :"pending",
+//       "user_ID": "64534c5e9d79e64870a3a6ec"
+//   },
+//   {
+//       "_id": "6456495bcaea51a505fac453",
+//       "product_img": "https://cdn.caratlane.com/media/catalog/product/J/B/JB01214-1YP900_1_lar.jpg",
+//       "product_name": "Rahi Diamond Bangle",
+//       "product_price": 14599,
+//       "product_desc": "Rahi Diamond Bangle",
+//       "product_weight": 8,
+//       "product_type": "Bangles",
+//        "order-status" :"pending",
+//       "user_ID": "64534c5e9d79e64870a3a6ec"
+//   }
+//    ] 
+//   }
 
 
 
 
 const Payment = () => {
-  const [firstName, setFirsName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [first_name, setFirsName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [phone, setPhone] = useState("");
-  const [street, setStreet] = useState("");
+  // const [mobile, setMobile] = useState("");
+  const [address, setAddress] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [product, setProduct] = useState("");
   const [pincode, setPincode] = useState("");
   const [country, setCountry] = useState("India");
+  const [data, setData] = useState([])
   const dispatch = useDispatch();
   const toast = useToast()
+
+  const token=localStorage.getItem("token")
+  console.log(token)
+ const fetChData=()=>{
+  fetch(`http://localhost:8080/cart/products`,{
+     method : "GET",
+     headers : {
+      "content-type" : "Application/json",
+      "Authorization" : `Bearer ${token}`
+     }
+  })
+  .then(res=> res.json())
+  .then((data)=> {
+    setData(data)
+    console.log(data)
+  }).catch((err)=>{
+    console.log("Error")
+  })
+ }
+ useEffect(() => {
+    fetChData()
+ }, [])
+ 
+  
+
   const navigate = useNavigate()
 
   const data = useSelector((state)=>state.cartReducer.data)
+
   
   const handlePayment = () => {
     let userData = {
-      first_name: firstName,
-      last_name: lastName,
-      city: city,
-      address: street + " " + city + " " + state,
-      mobile: phone,
-      pincode: +pincode,
+      first_name,
+      last_name ,
+      city ,
+      address,
+      mobile,
+      pincode ,
+      product,
       country,
     };
    
@@ -73,18 +137,34 @@ const Payment = () => {
       duration: 4000,
       isClosable: true,
     });
+
+
+
     // window.location.href = "/"
     return navigate('/')
+
+   
+
+
+    fetch(`http://localhost:8080/cart/product/add`,{
+  method:"POST",
+  body:JSON.stringify({userData}),
+  headers:{
+    "Content-Type":"application/json",
+    "Authorization":`Bearer ${JSON.parse(localStorage.getItem("token"))}`
+  }
+})
+.then(res=> res.json()
+).then((res)=>{
+  console.log(res)
+}).catch((err)=>{
+  console.log(err);
+})
+
+    window.location.href = "/"
    
   };
 
-
-  // const [cartItems, setCartItems] = useState([]);
-
-
-  // useEffect(() => {
-    
-  // }, []);
 
   
 
@@ -96,6 +176,7 @@ const Payment = () => {
     }
     gst = (sum*18)/100
     grandTotal = Math.floor(sum+gst)
+    console.log('grandTotal:', grandTotal)
    
   }
 
@@ -106,6 +187,8 @@ const Payment = () => {
   discount=grandTotal*(5/100);
   }else if(grandTotal>100000){
     discount=grandTotal*(8/100); 
+  }else{
+    discount=0;
   }
 
 
@@ -155,7 +238,7 @@ const Payment = () => {
                   borderRadius={"none"}
                   border={"1px solid gray"}
                   focusBorderColor="gray.400"
-                  value={firstName}
+                  value={first_name}
                   onChange={(e) => setFirsName(e.target.value)}
                   placeholder="First name"
                 />
@@ -164,7 +247,7 @@ const Payment = () => {
               <FormControl id="lastName">
                 {/* <FormLabel>Last Name</FormLabel> */}
                 <Input
-                  value={lastName}
+                  value={last_name}
                   onChange={(e) => setLastName(e.target.value)}
                   type="text"
                   borderRadius={"none"}
@@ -174,11 +257,11 @@ const Payment = () => {
                 />
               </FormControl>
 
-              <FormControl id="phone" isRequired>
+              <FormControl id="mobile" isRequired>
                 {/* <FormLabel>Phone number</FormLabel> */}
                 <Input
-                  value={phone}
-                  onChange={(e) => setPhone(Number(e.target.value))}
+                  value={mobile}
+                  onChange={(e) => setMobile(Number(e.target.value))}
                   type="number"
                   maxLength={"10"}
                   borderRadius={"none"}
@@ -187,16 +270,16 @@ const Payment = () => {
                   placeholder="Phone number"
                 />
               </FormControl>
-              <FormControl id="phone" isRequired>
+              <FormControl id="mobile" isRequired>
                 {/* <FormLabel>Phone number</FormLabel> */}
                 <Input
-                  value={street}
+                  value={address}
                   type="text"
                   borderRadius={"none"}
                   border={"1px solid gray"}
                   focusBorderColor="gray.400"
-                  placeholder="Street & House no"
-                  onChange={(e) => setStreet(e.target.value)}
+                  placeholder="Address & House no"
+                  onChange={(e) => setAddress(e.target.value)}
                 />
               </FormControl>
               <FormControl id="city" isRequired>

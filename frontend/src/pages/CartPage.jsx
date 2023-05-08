@@ -156,7 +156,7 @@ export default function CartPage(){
                    >
                   Order Total ₹{Math.floor(grandTotal)}
                   </Button>
-                  <Link to='/paymentpage' >
+                  <Link to='/payment' >
                     <Button isDisabled={grandTotal==0} bg={'#212121'} color={'white'} >Proceed To Pay</Button>
                   </Link>
         </Box>
