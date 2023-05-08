@@ -26,11 +26,12 @@ import {
 } from "@chakra-ui/react";
 import { useToast } from '@chakra-ui/react'
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/Navbar";
-// import { handleUserPayment } from "../redux/Auth/action";
+
+
 
 
 
@@ -48,6 +49,9 @@ const Payment = () => {
   const [country, setCountry] = useState("India");
   const dispatch = useDispatch();
   const toast = useToast()
+
+  const data = useSelector((state)=>state.cartReducer.data)
+  
   const handlePayment = () => {
     let userData = {
       first_name: firstName,
@@ -58,7 +62,7 @@ const Payment = () => {
       pincode: +pincode,
       country,
     };
-    // dispatch(handleUserPayment(userData));
+   
     toast({
       position: "top",
       title: "Order placed",
@@ -72,20 +76,34 @@ const Payment = () => {
   };
 
 
-  const [cartItems, setCartItems] = useState([]);
+  // const [cartItems, setCartItems] = useState([]);
 
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-    setCartItems(items);
-  }, []);
+  // useEffect(() => {
+    
+  // }, []);
 
-  const total = cartItems.reduce((acc, item) => acc + item.DiscountPrice, 0)
-  const totalmain = cartItems.reduce((acc, item) => acc + item.Price, 0)
-
-  const Tsave= totalmain-total
+  
 
 
+  let sum = 0,gst=0,grandTotal
+  if(data){
+    for(let i=0; i<data.length; i++){
+      sum+=Number(data[i].product_price*data[i].product_qty)
+    }
+    gst = (sum*18)/100
+    grandTotal = Math.floor(sum+gst)
+   
+  }
+
+  let discount;
+  if(grandTotal>20000){
+   discount=grandTotal*(2/100);
+  }else if(grandTotal>50000){
+  discount=grandTotal*(5/100);
+  }else if(grandTotal>100000){
+    discount=grandTotal*(8/100); 
+  }
 
 
 
@@ -298,7 +316,8 @@ const Payment = () => {
                 transform: 'translateY(2px)',
                 boxShadow: 'lg',
               }}
-              onClick={() => handlePayment()}>
+              onClick={() => handlePayment()}
+              >
 
               Place Order
             </Button>
@@ -322,14 +341,14 @@ const Payment = () => {
                 <Tr>
                   <Th>SUB TOTAL</Th>
 
-                  <Th isNumeric> ₹ {totalmain}</Th>
+                  <Th isNumeric> ₹{Math.floor(grandTotal)}</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 <Tr>
                   <Td>CART DISCOUNT</Td>
 
-                  <Td isNumeric>₹ {Tsave}</Td>
+                  <Td isNumeric>₹ {discount}</Td>
                 </Tr>
                 <Tr>
                   <Td>SHIPPING CHARGES</Td>
@@ -341,7 +360,7 @@ const Payment = () => {
                 <Tr>
                   <Th>TOTAL COAST</Th>
 
-                  <Th isNumeric> ₹{total} </Th>
+                  <Th isNumeric> ₹{grandTotal-discount} </Th>
                 </Tr>
               </Tfoot>
             </Table>
