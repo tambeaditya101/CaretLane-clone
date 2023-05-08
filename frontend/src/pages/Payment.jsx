@@ -95,7 +95,7 @@ const Payment = () => {
      method : "GET",
      headers : {
       "content-type" : "Application/json",
-      "Authorization" : `Bearer ${token}`
+      // "Authorization" : `Bearer ${token}`
      }
   })
   .then(res=> res.json())
@@ -114,7 +114,7 @@ const Payment = () => {
 
   const navigate = useNavigate()
 
-  const data = useSelector((state)=>state.cartReducer.data)
+  
 
   
   const handlePayment = () => {
@@ -138,34 +138,30 @@ const Payment = () => {
       isClosable: true,
     });
 
+    fetch(`http://localhost:8080/cart/product/add`,{
+      method:"POST",
+      body:JSON.stringify({userData}),
+      headers:{
+        "Content-Type":"application/json",
+        // "Authorization":`Bearer ${JSON.parse(localStorage.getItem("token"))}`
+      }
+    })
+    .then(res=> res.json()
+    ).then((res)=>{
+      console.log(res)
+    }).catch((err)=>{
+      console.log(err);
+    })
 
-
-    // window.location.href = "/"
+ 
     return navigate('/')
 
-   
-
-
-    fetch(`http://localhost:8080/cart/product/add`,{
-  method:"POST",
-  body:JSON.stringify({userData}),
-  headers:{
-    "Content-Type":"application/json",
-    "Authorization":`Bearer ${JSON.parse(localStorage.getItem("token"))}`
-  }
-})
-.then(res=> res.json()
-).then((res)=>{
-  console.log(res)
-}).catch((err)=>{
-  console.log(err);
-})
-
-    window.location.href = "/"
    
   };
 
 
+  
+  
   
 
 
