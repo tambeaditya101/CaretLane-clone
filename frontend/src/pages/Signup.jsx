@@ -179,6 +179,12 @@ export default function Signup() {
                     Login
                   </Link>
                 </Text>
+                <Text align={"center"}>
+                  Login As Admin ?{" "}
+                  <Link color={"blue.400"} href="/adminlogin">
+                    Admin Login
+                  </Link>
+                </Text>
               </Stack>
             </Stack>
           </Box>

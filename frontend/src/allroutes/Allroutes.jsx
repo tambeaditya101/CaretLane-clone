@@ -11,12 +11,14 @@ import Payment from "../pages/Payment";
 
 
 import { PrivateRoute } from "./PrivateRoute";
+import AdminLogin from "../pages/AdminLogin";
 
 
 function Allroutes() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/adminlogin" element={<AdminLogin/>} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/register" element={<Signup />} />
       <Route path='/' element={<Home/>}></Route>
