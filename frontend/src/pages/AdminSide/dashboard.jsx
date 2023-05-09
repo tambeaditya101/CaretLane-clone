@@ -65,6 +65,7 @@ const Dashboard = () => {
     <Box bgGradient='linear(to-l, blue.100, pink.100)' >
       <Text
         bgGradient='linear(to-l, #7928CA, #FF0080)'
+        mt={{ base: 35 , md:  5, lg: 2}}
         bgClip='text'
         fontSize='6xl'
         fontWeight='extrabold'

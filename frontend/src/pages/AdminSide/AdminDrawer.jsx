@@ -38,8 +38,9 @@ const AdminDrawer = ({
         <DrawerOverlay />
         <DrawerContent
           // backgroundColor={"#0c0e1f"}
-          bgGradient='linear(to-l, blue.100, pink.100)'
-          color={"white"}
+          bgGradient='linear(to-l, blue.200, pink.300)'
+          color={"pink.700"}
+          fontWeight={"bold"}
           textAlign={"center"}
         >
           <DrawerCloseButton fontSize={"xl"} />
