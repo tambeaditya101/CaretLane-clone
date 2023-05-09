@@ -27,7 +27,7 @@ export default function AdminLogin() {
    
         if (email=="admin@gmail.com" && password=="admin") {
   
-          Swal.fire("Welcome Admin", "Good Morning !");
+          Swal.fire("Welcome Admin", "Good Morning !!!");
  
           navigate("/admin");
         }  else {
