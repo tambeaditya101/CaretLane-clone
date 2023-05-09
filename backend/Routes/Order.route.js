@@ -34,7 +34,7 @@ OrderRouter.post("/add" ,async (req, res) => {
 
 //order status
 
-OrderRouter.patch("/orderStatus/:id/prod/:pid", async (req, res) => {
+OrderRouter.patch("/orderStatus/:id/prod/:pid"  ,async (req, res) => {
     const { id, pid } = req.params;
     const {order_status} = req.body
   try {

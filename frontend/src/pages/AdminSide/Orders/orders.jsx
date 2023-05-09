@@ -14,14 +14,15 @@ import Pending from "./Pending";
 import Completed from "./Completed";
 import axios from "axios";
 import Return from "./Return";
+import Swal from "sweetalert2";
 const Orders = () => {
   const [userDetails, setUserDetails] = useState([]);
    
   const GetUserOrderDetails = () => {
      axios.get(
-      `http://localhost:8080/order`,{
+      `${process.env.REACT_APP_BASE_URL}/order`,{
         headers : {
-          "Authorization" : `Bearer ${localStorage.getItem("token")}`,
+          // "Authorization" : `Bearer ${localStorage.getItem("token")}`,
           "Content-Type" : "application/json"
         }
       }

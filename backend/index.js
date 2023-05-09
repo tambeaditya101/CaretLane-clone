@@ -10,10 +10,10 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/order",OrderRouter)
 app.use("/user",userRouter);
 app.use("/",productRouter);
 app.use("/cart",cartRouter);
-app.use("/order",OrderRouter)
  
 app.listen(8080, async () => {
   try {

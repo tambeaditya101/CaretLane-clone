@@ -1,38 +1,11 @@
 import { Box, Button, Image, Text } from "@chakra-ui/react";
 import React from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
 import { useToast } from "@chakra-ui/react";
 // import  { useEffect, useState } from "react";
 const Return = ({ GetUserOrderDetails, userDetails }) => {
-  const toast = useToast();
-
-  const handleShipOrder = async (oID, uID) => {
-
-    try {
-      let res = await axios.patch(
-        `http://localhost:8080/order/orderStatus/${uID}/prod/${oID}`,
-        {
-          order_status: "Shipped",
-        }
-      );
-      toast({
-        title: "Updated Successfully.",
-        description: "Product Marked as Ship Successfully",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-      GetUserOrderDetails();
-    } catch (error) {
-      toast({
-        title: "Invalid Request",
-        description: "Please Try Again",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-    }
-  };
+ 
 
   return (
     <>
@@ -163,9 +136,9 @@ const Return = ({ GetUserOrderDetails, userDetails }) => {
                     size={"sm"}
                     colorScheme={"yellow"}
                     p={{ md: 1, lg: 5 }}
-                    onClick={() => {
-                      handleShipOrder(order._id, user._id);
-                    }}
+                    // onClick={() => {
+                    //   handleShipOrder(order._id, user._id);
+                    // }}
                   >
                      Done
                   </Button>
@@ -241,9 +214,7 @@ const Return = ({ GetUserOrderDetails, userDetails }) => {
                     mt={"10px"}
                     size={"sm"}
                     colorScheme={"yellow"}
-                    onClick={() => {
-                      handleShipOrder(order._id, user._id);
-                    }}
+                    isDisabled={true}
                   >
                     Done
                   </Button>
