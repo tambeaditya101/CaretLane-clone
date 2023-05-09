@@ -34,7 +34,7 @@ export const Home = () => {
       </div>
       <div className="home__img2">
         <div>
-          <Link to="">
+          <Link to="/products">
             <img
               src="https://cdn.caratlane.com/media/static/images/V4/2023/Shaya/05-MAY/Responsive_Banner/02/Responsive_1.jpg"
               alt="pic1"
@@ -44,7 +44,7 @@ export const Home = () => {
           </Link>
         </div>
         <div>
-          <Link to="">
+          <Link to="/products">
             <img
               src="https://cdn.caratlane.com/media/static/images/V4/2023/CL/04-APR/AppBanner/Studs/01/2X.webp"
               alt="pic1"
@@ -54,7 +54,7 @@ export const Home = () => {
           </Link>
         </div>
         <div>
-          <Link to="">
+          <Link to="/products">
             <img
               src="https://cdn.caratlane.com/media/static/images/V4/2023/CL/05-MAY/AppBanner/Newin/01/1X.jpg"
               alt="pic1"
@@ -68,7 +68,7 @@ export const Home = () => {
         {data__home__img3.map((el) => {
           return (
             <div>
-              <Link to="">
+              <Link to="/products">
                 <img src={el} alt="img" height="100%" width="100%" />
               </Link>
             </div>
@@ -77,7 +77,7 @@ export const Home = () => {
       </div>
       <div class="home__img4">
         <div>
-          <Link to="">
+          <Link to="/products">
             <img
               class="zoom__img"
               src="https://cdn.caratlane.com/media/static/images/V4/2023/CL/04-APR/HP-Banner/Collection/Collection_Harry_potter_2.webp"
@@ -90,7 +90,7 @@ export const Home = () => {
 
         <div>
           <div>
-            <Link to="">
+            <Link to="/products">
               <img
                 class="zoom__img"
                 src="https://cdn.caratlane.com/media/static/images/V4/2023/CL/05-MAY/HPBanner/Collection/01/Collection_ADaa_Product.webp"
@@ -104,7 +104,7 @@ export const Home = () => {
         </div>
 
         <div>
-          <Link to="">
+          <Link to="/products">
             <img
               class="zoom__img"
               src="https://cdn.caratlane.com/media/static/images/V4/2023/CL/03-MAR/AppBanner/Envogue/01/Collection_ENVOUE.jpg"
@@ -120,7 +120,7 @@ export const Home = () => {
         {data__home__img5.map((el) => {
           return (
             <div>
-              <Link to="">
+              <Link to="/products">
                 <img src={el} alt="img" height="100%" width="100%" />
               </Link>
             </div>
