@@ -5,19 +5,7 @@ const { OrderModel } = require("../models/Order.model");
 
 const OrderRouter = Router();
 
-// OrderRouter.get("/"  , async (req, res) => {
-//   const user_ID = req.body.user_ID;
-//   try {
-//     const data = await OrderModel.find({ user_ID: user_ID }).populate("user_ID", [
-//       "name",
-//       "email",
-//       "gender",
-//     ]);
-//     res.send(data);
-//   } catch (error) {
-//     res.send(error);
-//   }
-// });
+ 
 
 OrderRouter.post("/add" ,async (req, res) => {
    
@@ -52,7 +40,7 @@ OrderRouter.patch("/orderStatus/:id/prod/:pid"  ,async (req, res) => {
 OrderRouter.get("/", async (req, res) => {
   try {
     const data = await OrderModel.find()
-    // console.log(data)
+    
     res.send(data);
   } catch (error) {
     res.send("error");

@@ -22,7 +22,6 @@ const Orders = () => {
      axios.get(
       `${process.env.REACT_APP_BASE_URL}/order`,{
         headers : {
-          // "Authorization" : `Bearer ${localStorage.getItem("token")}`,
           "Content-Type" : "application/json"
         }
       }
