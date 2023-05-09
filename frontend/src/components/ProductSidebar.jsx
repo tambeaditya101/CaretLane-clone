@@ -14,7 +14,7 @@ export default function ProductSidebar(){
     const initialMaxWeight = params.get('maxWeight')
     const initialType= params.get('type')
 
-    const [minPriceRange,setMinPriceRange] = useState(initialMinPrice || "")
+    const [minPriceRange,setMinPriceRange] = useState("")
     const [maxPriceRange,setMaxPriceRange] = useState(initialMaxPrice || "")
     const [minWeightRange,setMinWeightRange] = useState(initialMinWeight || "")
     const [maxWeightRange,setMaxWeightRange] = useState( initialMaxWeight || "")
@@ -94,12 +94,12 @@ export default function ProductSidebar(){
         <Box borderTopRadius='20px' bg='#F5F5F5' textAlign='center' p={'5%'}  >Filter By</Box>
         <Box p={'5%'} >
             <Box fontWeight='500' fontSize={'22px'} >Price</Box>
-            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='under5000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}} defaultChecked={minPriceRange=='0'} /><label>Under ₹5,000</label></Box>
-            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='5001-10001' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}} defaultChecked={minPriceRange=='5001'} /><label>₹5,001  - ₹10,000</label></Box>
-            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='10001-15000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}} defaultChecked={minPriceRange=='10001'} /><label>₹10,001  - ₹15,000</label></Box>
-            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='15001-20000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}} defaultChecked={minPriceRange=='15001'} /><label>₹15,001  - ₹20,000</label></Box>
-            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='20001-30000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}} defaultChecked={minPriceRange=='20001'} /><label>₹20,001  - ₹30,000</label></Box>
-            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='above30000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}} defaultChecked={minPriceRange=='30000'} /><label>Above ₹30,000  </label></Box>
+            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='under5000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}}  /><label>Under ₹5,000</label></Box>
+            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='5001-10001' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}}  /><label>₹5,001  - ₹10,000</label></Box>
+            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='10001-15000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}}  /><label>₹10,001  - ₹15,000</label></Box>
+            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='15001-20000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}} /><label>₹15,001  - ₹20,000</label></Box>
+            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='20001-30000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}} /><label>₹20,001  - ₹30,000</label></Box>
+            <Box fontSize='18px' my={'2'} ><input type='radio' name='price' value='above30000' onChange={(e)=>handlePriceRange(e)} style={{marginRight:'10px'}} /><label>Above ₹30,000  </label></Box>
         </Box>
         <Box p={'5%'} borderTop='1px solid #F5F5F5' >
             <Box fontWeight='500' fontSize={'22px'} >Product Type</Box>

@@ -26,66 +26,166 @@ import {
 } from "@chakra-ui/react";
 import { useToast } from '@chakra-ui/react'
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector} from "react-redux";
 
-import Footer from "../components/footer";
-import Navbar from "../components/navbar";
-import { handleUserPayment } from "../redux/Auth/action";
+import Footer from "../components/footer/Footer";
+import Navbar from "../components/navbar/Navbar";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
+
+
+// const initState={
+//   first_name= "Hemensan",
+// "last_name= "Mahilange",
+// "mobile"= 123485934,
+// "country"= "India",
+// "address": "Chhattisgarh",
+// "city": "Janjgir",
+// "pincode": 495557,
+// "totalPrice": 1000,
+// "product": [
+//     {
+//       "_id": "645648d7caea51a505fac450",
+//       "product_img": "https://cdn.caratlane.com/media/catalog/product/J/B/JB01163-1RP600_1_lar.jpg",
+//       "product_name": "Malisa Diamond Bangle",
+//       "product_price": 31999,
+//       "product_desc": "Malisa Diamond Bangle",
+//       "product_weight": 11,
+//       "product_type": "Bangles",
+//        "order-status" :"pending",
+//       "user_ID": "64534c5e9d79e64870a3a6ec"
+//   },
+//   {
+//       "_id": "6456495bcaea51a505fac453",
+//       "product_img": "https://cdn.caratlane.com/media/catalog/product/J/B/JB01214-1YP900_1_lar.jpg",
+//       "product_name": "Rahi Diamond Bangle",
+//       "product_price": 14599,
+//       "product_desc": "Rahi Diamond Bangle",
+//       "product_weight": 8,
+//       "product_type": "Bangles",
+//        "order-status" :"pending",
+//       "user_ID": "64534c5e9d79e64870a3a6ec"
+//   }
+//    ] 
+//   }
 
 
 
 
 const Payment = () => {
-  const [firstName, setFirsName] = useState("");
-  const [lastName, setLastName] = useState("");
+
+  const [first_name, setFirsName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  const [phone, setPhone] = useState("");
-  const [street, setStreet] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [address, setAddress] = useState("");
   const [pincode, setPincode] = useState("");
   const [country, setCountry] = useState("India");
+  const [data, setData] = useState([])
   const dispatch = useDispatch();
   const toast = useToast()
+
+  const token=localStorage.getItem("token")
+
+ const fetChData=()=>{
+  fetch(`${process.env.REACT_APP_BASE_URL}/cart/products`,{
+     method : "GET",
+     headers : {
+      "content-type" : "Application/json",
+      "Authorization" : `Bearer ${token}`
+     }
+  })
+  .then(res=> res.json())
+  .then((data)=> {
+    setData([...data])
+  }).catch((err)=>{
+    console.log("Error")
+  })
+ }
+ useEffect(() => {
+    fetChData()
+ }, [])
+ 
+  
+
+  const navigate = useNavigate()
+
+  
+
+  
   const handlePayment = () => {
-    let userData = {
-      first_name: firstName,
-      last_name: lastName,
-      city: city,
-      address: street + " " + city + " " + state,
-      mobile: phone,
-      pincode: +pincode,
-      country,
-    };
-    dispatch(handleUserPayment(userData));
-    toast({
-      position: "top",
-      title: "Order placed",
-      description: "SuccessFul.",
-      status: "success",
-      duration: 4000,
-      isClosable: true,
-    });
-    window.location.href = "/"
-   
+    if(!first_name || !last_name || !mobile || !pincode || !city || !address ){
+      toast({
+        position: "top",
+        title: "Please fill all details",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+      });
+
+    }else{
+
+      let userData = {
+        first_name,
+        last_name ,
+        city ,
+        address,
+        mobile,
+        pincode ,
+        product:data,
+        country,
+      };
+  
+      axios.post(`${process.env.REACT_APP_BASE_URL}/order/add`,userData,{
+        headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      .then((res)=>{})
+      .catch((err)=>{})
+     
+      toast({
+        position: "top",
+        title: "Order placed",
+        description: "SuccessFul.",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+      });
+      return navigate('/')
+
+    }
   };
 
 
-  const [cartItems, setCartItems] = useState([]);
+  
+  
+  
 
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("cartItems")) || [];
-    setCartItems(items);
-  }, []);
+  let sum = 0,gst=0,grandTotal
+  if(data){
+    for(let i=0; i<data.length; i++){
+      sum+=Number(data[i].product_price*data[i].product_qty)
+    }
+    gst = (sum*18)/100
+    grandTotal = Math.floor(sum+gst)
+   
+  }
 
-  const total = cartItems.reduce((acc, item) => acc + item.DiscountPrice, 0)
-  const totalmain = cartItems.reduce((acc, item) => acc + item.Price, 0)
-
-  const Tsave= totalmain-total
-
-
+  let discount=1000;
+  if(grandTotal>20000){
+   discount=grandTotal*(2/100);
+  }else if(grandTotal>50000){
+  discount=grandTotal*(5/100);
+  }else if(grandTotal>100000){
+    discount=grandTotal*(8/100); 
+  }else{
+    discount=0;
+  }
 
 
 
@@ -104,7 +204,7 @@ const Payment = () => {
         alignItems="center"
         gap={"0.2px"}
         margin="auto"
-        paddingTop={"100px"}
+        paddingTop={"10px"}
       >
         <Stack
           flexDirection={{
@@ -134,7 +234,7 @@ const Payment = () => {
                   borderRadius={"none"}
                   border={"1px solid gray"}
                   focusBorderColor="gray.400"
-                  value={firstName}
+                  value={first_name}
                   onChange={(e) => setFirsName(e.target.value)}
                   placeholder="First name"
                 />
@@ -143,7 +243,7 @@ const Payment = () => {
               <FormControl id="lastName">
                 {/* <FormLabel>Last Name</FormLabel> */}
                 <Input
-                  value={lastName}
+                  value={last_name}
                   onChange={(e) => setLastName(e.target.value)}
                   type="text"
                   borderRadius={"none"}
@@ -153,11 +253,11 @@ const Payment = () => {
                 />
               </FormControl>
 
-              <FormControl id="phone" isRequired>
+              <FormControl id="mobile" isRequired>
                 {/* <FormLabel>Phone number</FormLabel> */}
                 <Input
-                  value={phone}
-                  onChange={(e) => setPhone(Number(e.target.value))}
+                  value={mobile}
+                  onChange={(e) => setMobile(Number(e.target.value))}
                   type="number"
                   maxLength={"10"}
                   borderRadius={"none"}
@@ -166,16 +266,16 @@ const Payment = () => {
                   placeholder="Phone number"
                 />
               </FormControl>
-              <FormControl id="phone" isRequired>
+              <FormControl id="mobile" isRequired>
                 {/* <FormLabel>Phone number</FormLabel> */}
                 <Input
-                  value={street}
+                  value={address}
                   type="text"
                   borderRadius={"none"}
                   border={"1px solid gray"}
                   focusBorderColor="gray.400"
-                  placeholder="Street & House no"
-                  onChange={(e) => setStreet(e.target.value)}
+                  placeholder="Address & House no"
+                  onChange={(e) => setAddress(e.target.value)}
                 />
               </FormControl>
               <FormControl id="city" isRequired>
@@ -298,7 +398,8 @@ const Payment = () => {
                 transform: 'translateY(2px)',
                 boxShadow: 'lg',
               }}
-              onClick={() => handlePayment()}>
+              onClick={() => handlePayment()}
+              >
 
               Place Order
             </Button>
@@ -322,14 +423,14 @@ const Payment = () => {
                 <Tr>
                   <Th>SUB TOTAL</Th>
 
-                  <Th isNumeric> ₹ {totalmain}</Th>
+                  <Th isNumeric> ₹{Math.floor(grandTotal)}</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 <Tr>
                   <Td>CART DISCOUNT</Td>
 
-                  <Td isNumeric>₹ {Tsave}</Td>
+                  <Td isNumeric>₹ {discount}</Td>
                 </Tr>
                 <Tr>
                   <Td>SHIPPING CHARGES</Td>
@@ -341,7 +442,7 @@ const Payment = () => {
                 <Tr>
                   <Th>TOTAL COAST</Th>
 
-                  <Th isNumeric> ₹{total} </Th>
+                  <Th isNumeric> ₹{grandTotal-discount} </Th>
                 </Tr>
               </Tfoot>
             </Table>

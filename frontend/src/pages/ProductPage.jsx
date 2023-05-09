@@ -27,21 +27,19 @@ export default function ProductPage() {
       type: params.get("type"),
       minWeight: params.get("minWeight"),
       maxWeight: params.get("maxWeight"),
-      order: params.get("order"),
     },
   };
 
   const handleChange = (e) => {
     setOrder(e.target.value);
   };
-  console.log(data)
 
   useEffect(() => {
-    let params = {};
-    order && (params.order = order);
-    setParams(params);
+    // let params = {};
+    // order && (params.order = order);
+    // setParams(params);
     dispatch(getProducts(obj));
-  }, [location.search, order]);
+  }, [location.search]);
 
   return (
     <>
@@ -128,7 +126,7 @@ export default function ProductPage() {
                 bgGradient="linear(to-l, #7928CA, #FF0080)"
                 bgClip="text"
               >
-                Loding....
+                Loading....
               </Heading>
             ) : (
               <Box>

@@ -23,6 +23,7 @@ OrderRouter.post("/add" ,async (req, res) => {
    
   try {
     const data = new OrderModel(req.body);
+    console.log(data)
     await data.save();
     res.send("data is added");
   } catch (error) {
