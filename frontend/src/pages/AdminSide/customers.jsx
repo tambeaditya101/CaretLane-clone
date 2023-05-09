@@ -20,23 +20,23 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Customers = () => {
-  const [CustomerData , setCustomerData ] = useState([])
-   
-  const GetCustomers=()=>{
+  const [CustomerData, setCustomerData] = useState([])
+
+  const GetCustomers = () => {
     axios.get(`${process.env.REACT_APP_BASE_URL}/user/`)
-    .then((res)=>{ 
-      console.log(res.data)
-      setCustomerData(res.data)
-    })
-    .catch((err)=>{
-      console.log("Something went wrong !!")
-    })
+      .then((res) => {
+        console.log(res.data)
+        setCustomerData(res.data)
+      })
+      .catch((err) => {
+        console.log("Something went wrong !!")
+      })
   }
 
   useEffect(() => {
     GetCustomers()
   }, [])
-  
+
   return (
     <Box
       color={"pink.700"}
@@ -45,9 +45,9 @@ const Customers = () => {
       mt={{ base: "60px", md: "0px" }}
       padding={"20px"}
       // bg={"#0c0e1f"}
-      bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"  
+      bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"
     >
-     
+
       <Text
         bgGradient='linear(to-l, #7928CA, #FF0080)'
         bgClip='text'
@@ -60,7 +60,7 @@ const Customers = () => {
       </Text>
 
       <Box mt={"30px"} width={{ base: "100%", md: "50%", lg: "30%" }}>
-     
+
       </Box>
 
       <Box
@@ -112,7 +112,7 @@ const Customers = () => {
         >
           <Text>STATUS</Text>
         </Box>
-        
+
       </Box>
 
       {CustomerData.map((el, i) => (
@@ -139,7 +139,7 @@ const Customers = () => {
               width={{ base: "8%", md: "12%" }}
               fontSize={{ base: "12px", md: "11px", lg: "14px" }}
             >
-              <Avatar  src={el.image ? el.image : el.name[0]} name={el.name}></Avatar>
+              <Avatar src={el.image ? el.image : el.name[0]} name={el.name}></Avatar>
             </Box>
             <Box
               width={{ base: "7%", md: "15%", lg: "15%" }}
@@ -162,15 +162,21 @@ const Customers = () => {
             >
               <Text>{el.email}</Text>
             </Box>
-            <Button
-              colorScheme='teal' size='md'
-              width={{ base: "10%", md: "13%" }}
-              fontSize={{ base: "12px", md: "11px", lg: "14px" }}
-              textAlign={"center"}
-            >
-              <Text>{`Active`}</Text>
-            </Button>
-       
+            <Box
+                  as='button'
+                  p={3}
+                  color='white'
+                  fontWeight='bold'
+                  borderRadius='md'
+                  bgGradient='linear(to-r, teal.500, pink.500)'
+                  _hover={{
+                    bgGradient: 'linear(to-r, red.500, yellow.500)',
+                  }}
+                >
+                   Active
+                </Box>
+
+
           </Box>
           {/*``````````````````````````` Small Screen Data```````````````````````` */}
           <Box
@@ -184,14 +190,19 @@ const Customers = () => {
                 h="25px"
                 width={"78px"}
                 border={"1px solid green"}
-                bg={"green.500"}
+                bgGradient='linear(to-r, teal.500, pink.500)'
+                  _hover={{
+                    bgGradient: 'linear(to-r, red.500, yellow.500)',
+                  }}
                 mb={"10px"}
                 color="black"
                 display={"flex"}
                 justifyContent={"center"}
                 alignItems={"center"}
               >
-                <Text as="b" fontSize={{ base: "10px", sm: "12px" }}>
+                <Text as="b"
+                
+                fontSize={{ base: "10px", sm: "12px" }}>
                   User Details
                 </Text>
               </Box>
@@ -230,21 +241,26 @@ const Customers = () => {
                 >
                   Mail-{el.email}
                 </Text>
-                <Button
-                 colorScheme='green' size='md'
-                  fontWeight={"bold"}
-                  mt={"10px"}
-                  fontSize={{ base: "13px", sm: "14px" }}
+                <Box
+                  as='button'
+                  p={3}
+                  color='white'
+                  fontWeight='bold'
+                  borderRadius='md'
+                  bgGradient='linear(to-r, teal.500, pink.500)'
+                  _hover={{
+                    bgGradient: 'linear(to-r, red.500, yellow.500)',
+                  }}
                 >
-                  Active
-                </Button>
-                
+                   Active
+                </Box>
+
               </Box>
             </Box>
           </Box>
         </Box>
       ))}
- 
+
     </Box>
   );
 };

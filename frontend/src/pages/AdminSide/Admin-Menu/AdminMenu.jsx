@@ -79,7 +79,7 @@ const AdminMenu = () => {
             // transition={"0.8s"}
             fontWeight={"bold"}
             _selected={{
-              color: "white",
+              color: "black",
               bgGradient:'linear(to-l,  pink.800, blue.600)',
               transform: "scale(1.05)",
               transition: "0.2s",
@@ -205,8 +205,8 @@ const AdminMenu = () => {
         justifyContent={"space-between"}
         alignItems={"center"}
         padding={"10px"}
-        backgroundColor={"#0c0e1f"}
-        color={"white"}
+        bgGradient='linear(to-l,  pink.200, blue.300)'
+        color={"black"}
         position={"fixed"}
         width={"100%"}
         top={0}
@@ -220,12 +220,12 @@ const AdminMenu = () => {
           prodRef={prodRef}
         />
         <Box>
-          <Menu>
+          <Menu  bgGradient='linear(to-l,  pink.200, blue.300)' >
             <MenuButton>
               <Avatar src={admin.Image} name={admin.Name}></Avatar>
             </MenuButton>
-            <MenuList backgroundColor={"#0c0e1f"} border={"1px solid #27293a"}>
-              <MenuItem backgroundColor={"#0c0e1f"}>
+            <MenuList   border={"1px solid #27293a"}>
+              <MenuItem  bgGradient='linear(to-l,  pink.200, blue.300)' >
                 <Box
                   onClick={() => {
                     accountRef.current.click();
@@ -243,7 +243,7 @@ const AdminMenu = () => {
                 </Box>
               </MenuItem>
               <MenuDivider />
-              <MenuItem backgroundColor={"#0c0e1f"} color={"red.600"}>
+              <MenuItem  bgGradient='linear(to-l,  pink.200, blue.300)' color={"red.600"}>
                 <Box
                   display={"flex"}
                   justifyContent={"center"}
