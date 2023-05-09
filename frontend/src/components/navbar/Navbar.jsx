@@ -27,14 +27,13 @@ import {
   Avatar,
   Button
 } from '@chakra-ui/react'
-
 const Navbar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure(); 
-  const [flag,setFlag] = useState(false)
-
-  const handleLogout = ()=>{
-    localStorage.setItem('token','')
-    localStorage.setItem('user','')
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [flag, setFlag] = useState(false)
+  const [checked, setChecked] = useState(false)
+  const handleLogout = () => {
+    localStorage.setItem('token', '')
+    localStorage.setItem('user', '')
     setFlag(!flag)
   }
 
@@ -42,13 +41,16 @@ const Navbar = () => {
     <div id="nav__main">
       <div id="nav__top">Introducing CaratLane PoP! Plan your purchase</div>
       <div id="nav__medium">
+
+
         <div id="nav__logo">
           <Link to="/">
             {" "}
             <img src={logo1} alt="logo" width={"50%"} />
           </Link>
         </div>
-
+        <input type="checkbox" id="hamburger" />
+        <label for="hamburger" class="hamburger-icon">&#9776;</label>
         <div id="nav__menu">
           <div>
             <IoHomeOutline class="nav__icone__logo" />
@@ -69,7 +71,7 @@ const Navbar = () => {
         </div>
 
         <div id="nav__search">
-          <input type="search" placeholder="Search" />
+          <input type="search" placeholder="Search" className="Search" />
           <button>
             <IoSearch class="nav__icone__search" />
           </button>
@@ -91,37 +93,38 @@ const Navbar = () => {
             <div>
               <div>
                 {
-                  localStorage.getItem('token')?<Menu>
-                  <MenuButton
-                    as={Button}
-                    rounded={'full'}
-                    variant={'link'}
-                    cursor={'pointer'}
-                    minW={0}>
-                    <Avatar
-                      size={'sm'}
-                      src={
-                        'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                      }
-                    />
-                  </MenuButton>
-                  <MenuList >
-                    
-                    <MenuItem  >{localStorage.getItem("user")}</MenuItem>
-                    <MenuDivider />
-                    <MenuItem onClick={()=>handleLogout()} bg="red">Log out</MenuItem>
-                  </MenuList>
-                </Menu>:<LoginModal/>
+                  localStorage.getItem('token') ? <Menu>
+                    <MenuButton
+                      as={Button}
+                      rounded={'full'}
+                      variant={'link'}
+                      cursor={'pointer'}
+                      minW={0}>
+                      <Avatar
+                        class="Avatar"
+                        size={'sm'}
+                        src={
+                          'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
+                        }
+                      />
+                    </MenuButton>
+                    <MenuList >
+
+                      <MenuItem  >{localStorage.getItem("user")}</MenuItem>
+                      <MenuDivider />
+                      <MenuItem onClick={() => handleLogout()} bg="red">Log out</MenuItem>
+                    </MenuList>
+                  </Menu> : <LoginModal />
                 }
               </div>
-            
+
             </div>
-            <div>
+            <div id="heart">
               <Link to="">
                 <TbHeartFilled class="nav__icon" />
               </Link>
             </div>
-            <div>
+            <div id="cart">
               <Link to="/cart">
                 <GiShoppingBag class="nav__icon" />
               </Link>

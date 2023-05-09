@@ -10,7 +10,7 @@ function Carousels() {
           src="https://cdn.caratlane.com/media/static/images/V4/2023/CL/05-MAY/AppBanner/Offer/03/Desktop_1920x560_toplisting.jpg"
           alt="First slide"
         />
-       
+
       </Carousel.Item>
 
       <Carousel.Item>
@@ -19,7 +19,7 @@ function Carousels() {
           src="https://cdn.caratlane.com/media/static/images/V4/2023/CL/04-APR/AppBanner/Digigold/02/Desktop_1920x694.jpg"
           alt="Second slide"
         />
-       
+
       </Carousel.Item>
 
       <Carousel.Item w="100%" >
