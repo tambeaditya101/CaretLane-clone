@@ -20,6 +20,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import ProductItems from "./products-item";
 import axios from "axios";
 
@@ -70,17 +71,17 @@ const Products = () => {
 
     axios
       .patch(
-        `http://localhost:8080/product/update/${mid}`,
+        `${process.env.REACT_APP_BASE_URL}/product/update/${mid}`,{
+          headers : {
+            "Authorization" : `Bearer ${localStorage.getItem("token")}`,
+            "content-type" : "application/json"
+          }
+        },
         dataToSend
       )
       .then((res) => {
         handleGetData();
-        toast({
-          title: "Updated Successfully",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-        });
+        Swal.fire("Good job!", "Update Successfull", "success");
       })
       .catch((res) => {
         toast({
@@ -95,7 +96,8 @@ const Products = () => {
  
   return (
     <Box
-      color={"black"}
+    color={"pink.700"}
+    fontWeight={"bold"}
       minH={"100vh"}
       mt={{ base: "60px", md: "0px" }}
       padding={"20px"}
@@ -185,7 +187,7 @@ const Products = () => {
         size={{ base: "sm", md: "md" }}
       >
         <ModalOverlay />
-        <ModalContent  bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"  color={"black"}>
+        <ModalContent  bgGradient="linear(to-r, #F8BBD0, #b3d4fc)"  color={"pink.700"}>
           <ModalHeader>Edit Listing</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6} textAlign={"center"}>

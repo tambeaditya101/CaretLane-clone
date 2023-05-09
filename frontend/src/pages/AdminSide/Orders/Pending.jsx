@@ -1,29 +1,23 @@
 import { Box, Button, Image, Text, Toast } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
+import Swal from "sweetalert2";
 import { useToast } from "@chakra-ui/react";
 
 const Pending = ({ GetUserOrderDetails, userDetails }) => {
   const toast = useToast();
 
-  const handleShipOrder = async (oID, uID) => {
+  const handleShipOrder =  (oID, uID) => {
 
     try {
-      let res = await axios.patch(
-        `http://localhost:8080/order/orderStatus/${uID}/prod/${oID}`,
-        {
-          order_status: "Shipped",
-        }
-      );
-      toast({
-        title: "Updated Successfully.",
-        description: "Product Marked as Ship Successfully",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-      GetUserOrderDetails();
+        axios.patch(
+        `${process.env.REACT_APP_BASE_URL}/order/orderStatus/${uID}/prod/${oID}`, 
+         {
+            order_status: "Shipped"
+          })
+        .then((res)=>  GetUserOrderDetails())
+        Swal.fire("Good job!", "Shipped Successfull", "success")
+ 
     } catch (error) {
       toast({
         title: "Invalid Request",
@@ -97,7 +91,7 @@ const Pending = ({ GetUserOrderDetails, userDetails }) => {
       {userDetails.map((user) =>
         user.product.map((order) =>
         
-          order.order_status === "pending" ?
+          order.order_status == "pending" ?
            (
             
             <Box

@@ -21,6 +21,7 @@ cartRouter.get("/products",async (req,res)=>{
 cartRouter.post("/product/add",async (req,res)=>{
     if (req.body.product_img && req.body.product_name && req.body.product_price && req.body.product_desc && req.body.product_weight && req.body.product_type && req.body.product_qty && req.body.user_ID){
         try {
+            req.body.order_status="pending"
             const payload = req.body;
             const new_cart_product = new CartModel(payload);
             await new_cart_product.save();

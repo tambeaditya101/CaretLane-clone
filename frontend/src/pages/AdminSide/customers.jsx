@@ -23,7 +23,7 @@ const Customers = () => {
   const [CustomerData , setCustomerData ] = useState([])
    
   const GetCustomers=()=>{
-    axios.get(`http://localhost:8080/user/`)
+    axios.get(`${process.env.REACT_APP_BASE_URL}/user/`)
     .then((res)=>{ 
       console.log(res.data)
       setCustomerData(res.data)
@@ -139,7 +139,7 @@ const Customers = () => {
               width={{ base: "8%", md: "12%" }}
               fontSize={{ base: "12px", md: "11px", lg: "14px" }}
             >
-              <Avatar src="https://avatars.githubusercontent.com/u/111531676?s=40&v=4" name={el.name}></Avatar>
+              <Avatar  src={el.image ? el.image : el.name[0]} name={el.name}></Avatar>
             </Box>
             <Box
               width={{ base: "7%", md: "15%", lg: "15%" }}
@@ -197,7 +197,7 @@ const Customers = () => {
               </Box>
               <Avatar
                 size={{ base: "lg", sm: "2xl" }}
-                src="https://avatars.githubusercontent.com/u/111531676?s=40&v=4"
+                src={el.image ? el.image : el.name[0]}
                 name={el.name}
               ></Avatar>
             </Box>

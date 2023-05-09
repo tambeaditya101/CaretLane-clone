@@ -10,8 +10,8 @@ const OrderSchema = mongoose.Schema(
     mobile: { type: Number },
     country: {type : String},
     totalPrice: { type: Number },
-    product: [],
-    user_ID: { type: mongoose.Schema.ObjectId, ref: "user" },
+    order_status : {type : String},
+    product: [] 
   },
   { versionKey: false, timestamps: true }
 );
