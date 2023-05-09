@@ -25,8 +25,7 @@ export default function Login() {
   const navigate = useNavigate();
   const handleClick = () => {
     const form = { email, password };
-    console.log(form);
-    fetch("http://localhost:8080/user/login", {
+    fetch(`${process.env.REACT_APP_BASE_URL}/user/login`, {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
@@ -35,7 +34,6 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (res.msg === "login successfull" && res.token) {
  
           localStorage.setItem("user", email) 

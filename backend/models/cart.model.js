@@ -8,7 +8,8 @@ const cart_schema = mongoose.Schema({
     product_weight: {type: Number, required: true},
     product_type: {type: String, required: true, enum: ["Earing","Rings","Necklaces","Pendants","Bracelets","Bangles"]},
     product_qty : {type: Number,required: true, min: 1},
-    user_ID: {type:String, required: true}
+    user_ID: {type:String, required: true},
+    order_status : {type:String, required: true},
 },{
     versionKey: false
 });
