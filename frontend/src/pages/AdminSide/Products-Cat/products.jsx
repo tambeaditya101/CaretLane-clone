@@ -49,7 +49,7 @@ const Products = () => {
   const handleGetData = () => {
     axios
       .get(
-        `http://localhost:8080/products`
+        `${process.env.REACT_APP_BASE_URL}/products`
       )
       .then((res) => setDatas(res.data))
       .catch((err) => console.log(err));
