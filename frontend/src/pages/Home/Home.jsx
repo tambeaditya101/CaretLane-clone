@@ -36,7 +36,7 @@ export const Home = () => {
         <div>
           <Link to="/products">
             <img
-              src="https://cdn.caratlane.com/media/static/images/V4/2023/Shaya/05-MAY/Responsive_Banner/02/Responsive_1.jpg"
+              src="https://cdn.caratlane.com/media/static/images/V4/2023/Shaya/05-MAY/Responsive_Banner/08/Responsive_01.jpg"
               alt="pic1"
               height="100%"
               width="100%"
@@ -69,7 +69,8 @@ export const Home = () => {
           return (
             <div>
               <Link to="/products">
-                <img src={el} alt="img" height="100%" width="100%" />
+                <img src={el} alt="img" height="100%" width="100%" className="img3" />
+
               </Link>
             </div>
           );
@@ -127,7 +128,7 @@ export const Home = () => {
           );
         })}
       </div>
-      <div className="bot-pic">
+      <div className="home__img6">
         <div>
           <img
             src="https://banner.caratlane.com/live-images/4432338e863546609e2d0fed64117351.jpg"

@@ -81,6 +81,7 @@
 }
 
 /* navbar authorization menu css */
+
 #nav__auth__menu {
   height: 100%;
   width: 100%;
@@ -138,4 +139,110 @@
   justify-content: space-around;
   position: relative;
   background-color: white;
+}
+
+@media only screen and (min-width: 1110px) {
+  #hamburger {
+    display: none;
+  }
+  .hamburger-icon {
+    display: none;
+  }
+  #nav__menu {
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 1109px) {
+  #nav__menu {
+    display: none;
+  }
+  #hamburger {
+    display: none;
+  }
+  .nav__auth__icone {
+    display: none;
+  }
+  .nav__auth__icone ~ p {
+    display: none;
+  }
+  .flag {
+    display: none;
+  }
+  .Avatar {
+    display: none;
+  }
+  #nav__medium {
+    display: grid;
+    grid-template-columns: 10% 10% 46% 21%;
+    align-items: center;
+    column-gap: 2%;
+    padding: 1rem;
+    background-color: rgb(245, 249, 255);
+  }
+  /* Show menu items when hamburger menu is clicked */
+  #hamburger:checked ~ #nav__menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 99;
+    height: auto;
+    background-color: #f5f9ff;
+    padding: 0.8rem;
+  }
+  .hamburger-icon {
+    font-size: larger;
+    width: 40px;
+    margin-left: 20px;
+  }
+  .nav__icone__search {
+    margin-left: 14px;
+  }
+  #hamburger:checked ~ #nav__menu > div {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+  #hamburger:checked ~ #nav__menu > div > a {
+    color: #4f3267;
+  }
+  #hamburger:checked ~ #nav__menu > div > a:hover {
+    color: #8863fb;
+  }
+}
+
+@media (max-width: 798px) {
+  .hamburger-icon {
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 673px) {
+  .hamburger-icon {
+    margin-left: 20px;
+  }
+  #heart {
+    display: none;
+  }
+  #nav__medium {
+    display: grid;
+    grid-template-columns: 10% 10% 45% 0%;
+    align-items: center;
+    column-gap: 2%;
+    padding: 1rem;
+    background-color: rgb(245, 249, 255);
+  }
+  .nav__icone__search {
+    margin-left: 6px;
+  }
+}
+
+@media (max-width: 594px) {
+  .hamburger-icon {
+    margin: 0px 20px;
+  }
+  #cart {
+    display: none;
+  }
 }

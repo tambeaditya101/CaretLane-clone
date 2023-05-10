@@ -32,7 +32,7 @@ import Swal from "sweetalert2";
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [flag, setFlag] = useState(false);
-
+ const [checked, setChecked] = useState(false)
   const handleLogout = () => {
     localStorage.setItem("token", "");
     localStorage.setItem("user", "");
@@ -44,13 +44,16 @@ const Navbar = () => {
     <div id="nav__main">
       <div id="nav__top">Introducing CaratLane PoP! Plan your purchase</div>
       <div id="nav__medium">
+
+
         <div id="nav__logo">
           <Link to="/">
             {" "}
             <img src={logo1} alt="logo" width={"50%"} />
           </Link>
         </div>
-
+        <input type="checkbox" id="hamburger" />
+        <label for="hamburger" class="hamburger-icon">&#9776;</label>
         <div id="nav__menu">
           <div>
             <IoHomeOutline class="nav__icone__logo" />
@@ -71,7 +74,7 @@ const Navbar = () => {
         </div>
 
         <div id="nav__search">
-          <input type="search" placeholder="Search" />
+          <input type="search" placeholder="Search" className="Search" />
           <button>
             <IoSearch class="nav__icone__search" />
           </button>
@@ -136,10 +139,11 @@ const Navbar = () => {
             </div>
             <div>
               <Link to="*">
+
                 <TbHeartFilled class="nav__icon" />
               </Link>
             </div>
-            <div>
+            <div id="cart">
               <Link to="/cart">
                 <GiShoppingBag class="nav__icon" />
               </Link>

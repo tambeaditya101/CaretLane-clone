@@ -65,3 +65,9 @@
     min-width: 550px;
   }
 }
+
+@media screen and (max-width: 806px) {
+  .navdrop {
+    display: none;
+  }
+}
