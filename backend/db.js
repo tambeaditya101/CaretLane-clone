@@ -1,13 +1,10 @@
 const mongoose = require("mongoose");
-
-const connection = mongoose.connect(
-  "mongodb+srv://tambeaditya101:tambeaditya101@cluster0.jy43s7w.mongodb.net/caretlane?retryWrites=true&w=majority"
-);
+require("dotenv").config();
+const connection = mongoose.connect(process.env.mongoURL);
 
 module.exports = {
   connection,
 };
-
 
 //mongodb+srv://tambeaditya101:tambeaditya101@cluster0.jy43s7w.mongodb.net/caretlane?retryWrites=true&w=majority
 

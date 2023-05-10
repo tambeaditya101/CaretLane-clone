@@ -8,10 +8,9 @@ const OrderSchema = mongoose.Schema(
     city: { type: String },
     pincode: { type: Number },
     mobile: { type: Number },
-    country: {type : String},
+    country: { type: String },
     totalPrice: { type: Number },
     product: [],
-    user_ID: { type: mongoose.Schema.ObjectId, ref: "user" },
   },
   { versionKey: false, timestamps: true }
 );
@@ -27,7 +26,7 @@ const OrderSchema = mongoose.Schema(
 // let data = {
 //   "first_name": "Hemensan",
 //   "last_name": "Mahilange",
-//   "city":  "Chhattisgarh", 
+//   "city":  "Chhattisgarh",
 //   "mobile": 123485934,
 //   country: String,
 //   "address": "Chhattisgarh",

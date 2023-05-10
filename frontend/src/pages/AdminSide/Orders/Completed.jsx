@@ -2,7 +2,7 @@ import { Box, Button, Image, Text } from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useToast } from "@chakra-ui/react";
-
+import Swal from "sweetalert2";
 const Completed = ({ GetUserOrderDetails, userDetails }) => {
 
   const toast = useToast();
@@ -11,19 +11,13 @@ const Completed = ({ GetUserOrderDetails, userDetails }) => {
     
     try {
       let res = await axios.patch(
-        `https://good-rose-kingfisher-tam.cyclic.app/order/orderStatus/${uID}/prod/${oID}`,
+        `${process.env.REACT_APP_BASE_URL}/order/orderStatus/${uID}/prod/${oID}`,
         {
           order_status: "Completed",
         }
-      );
-      toast({
-        title: "Updated Successfully.",
-        description: "Product Marked as Ship Successfully",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
-      });
-      GetUserOrderDetails();
+      ).then(()=> GetUserOrderDetails())
+      Swal.fire("Good job!", "Update Successfull", "success");
+       
     } catch (error) {
       toast({
         title: "Invalid Request",

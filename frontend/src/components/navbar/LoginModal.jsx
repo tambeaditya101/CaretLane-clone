@@ -27,8 +27,7 @@ export const LoginModal = () => {
 
   return (
     <>
-      <FaUser onClick={onOpen} />
-
+      <FaUser cursor={"pointer"} size={"20px"} onClick={onOpen} />
       <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>

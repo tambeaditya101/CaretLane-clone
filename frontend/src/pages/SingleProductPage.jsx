@@ -40,7 +40,9 @@ import ProductCard from '../components/ProductCard';
     const AddtoCartItem = async ()=>{
       
         if(localStorage.getItem('token')){
-          data.product_qty=1
+          
+          data.product_qty=1;
+          data.order_status="pending"
           axios.post(`${process.env.REACT_APP_BASE_URL}/cart/product/add`,data,{
             headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`

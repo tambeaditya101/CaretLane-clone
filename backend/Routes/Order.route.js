@@ -5,24 +5,13 @@ const { OrderModel } = require("../models/Order.model");
 
 const OrderRouter = Router();
 
-// OrderRouter.get("/"  , async (req, res) => {
-//   const user_ID = req.body.user_ID;
-//   try {
-//     const data = await OrderModel.find({ user_ID: user_ID }).populate("user_ID", [
-//       "name",
-//       "email",
-//       "gender",
-//     ]);
-//     res.send(data);
-//   } catch (error) {
-//     res.send(error);
-//   }
-// });
+ 
 
 OrderRouter.post("/add" ,async (req, res) => {
    
   try {
     const data = new OrderModel(req.body);
+    console.log(data)
     await data.save();
     res.send("data is added");
   } catch (error) {
@@ -34,7 +23,7 @@ OrderRouter.post("/add" ,async (req, res) => {
 
 //order status
 
-OrderRouter.patch("/orderStatus/:id/prod/:pid", async (req, res) => {
+OrderRouter.patch("/orderStatus/:id/prod/:pid"  ,async (req, res) => {
     const { id, pid } = req.params;
     const {order_status} = req.body
   try {
@@ -51,7 +40,7 @@ OrderRouter.patch("/orderStatus/:id/prod/:pid", async (req, res) => {
 OrderRouter.get("/", async (req, res) => {
   try {
     const data = await OrderModel.find()
-    // console.log(data)
+    
     res.send(data);
   } catch (error) {
     res.send("error");

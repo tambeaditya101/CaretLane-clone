@@ -1,24 +1,38 @@
 const mongoose = require("mongoose");
 
-const cart_schema = mongoose.Schema({
-    product_img: {type: String, required: true},
-    product_name: {type: String, required: true, minlength:3},
-    product_price: {type: Number, required: true},
-    product_desc: {type: String, required: true},
-    product_weight: {type: Number, required: true},
-    product_type: {type: String, required: true, enum: ["Earing","Rings","Necklaces","Pendants","Bracelets","Bangles"]},
-    product_qty : {type: Number,required: true, min: 1},
-    user_ID: {type:String, required: true}
-},{
-    versionKey: false
-});
+const cart_schema = mongoose.Schema(
+  {
+    product_img: { type: String, required: true },
+    product_name: { type: String, required: true, minlength: 3 },
+    product_price: { type: Number, required: true },
+    product_desc: { type: String, required: true },
+    product_weight: { type: Number, required: true },
+    product_type: {
+      type: String,
+      required: true,
+      enum: [
+        "Earing",
+        "Rings",
+        "Necklaces",
+        "Pendants",
+        "Bracelets",
+        "Bangles",
+      ],
+    },
+    product_qty: { type: Number, required: true, min: 1 },
+    user_ID: { type: String, required: true },
+    order_status: { type: String },
+  },
+  {
+    versionKey: false,
+  }
+);
 
-const CartModel = mongoose.model("cart",cart_schema);
+const CartModel = mongoose.model("cart", cart_schema);
 
-module.exports= {
-    CartModel
-}
-
+module.exports = {
+  CartModel,
+};
 
 /*
 {

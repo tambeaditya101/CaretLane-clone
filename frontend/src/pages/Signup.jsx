@@ -33,7 +33,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const handleClick = () => {
     const form = { name, gender, email, password };
-    fetch("http://localhost:8080/user/register", {
+    fetch(`${process.env.REACT_APP_BASE_URL}/user/register`, {
       method: "POST",
       body: JSON.stringify(form),
       headers: {
@@ -42,7 +42,6 @@ export default function Signup() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (res.msg === "Registerd Successfull.") {
           setName("");
           setGender("");
@@ -178,6 +177,12 @@ export default function Signup() {
                   Already a user?{" "}
                   <Link color={"blue.400"} href="/login">
                     Login
+                  </Link>
+                </Text>
+                <Text align={"center"}>
+                  Login As Admin ?{" "}
+                  <Link color={"blue.400"} href="/adminlogin">
+                    Admin Login
                   </Link>
                 </Text>
               </Stack>
