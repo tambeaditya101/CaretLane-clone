@@ -29,6 +29,7 @@
   - `CSS3`
      - `JavaScript `
   - `ReactJS`
+     - `React-redux `
      - `ES6 `
 
 - #### For Backend :-
