@@ -345,9 +345,9 @@
     grid-template-rows: repeat(3, 1fr);
     width: 100%;
   }
-  .img3 {
+  /* .img3 {
     height: 200px;
-  }
+  } */
   .home__img2 {
     display: grid;
     grid-template-columns: 1fr;
@@ -407,7 +407,3 @@
     overflow: hidden;
   }
 }
-/* 
-      @media only screen and (max-width:720) {
-        
-      } */
