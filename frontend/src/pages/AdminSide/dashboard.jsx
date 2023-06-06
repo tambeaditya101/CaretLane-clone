@@ -25,7 +25,7 @@ const Dashboard = () => {
     ],
   });
   const [userData, setUserData] = useState({
-    labels: [1,2,3,4,5],
+    labels: [1, 2, 3, 4, 5],
     datasets: [
       {
         label: "Users Gained per Year",
@@ -47,7 +47,7 @@ const Dashboard = () => {
     datasets: [
       {
         label: "Orders Details",
-        data: [ 94, 47, 55, 3],
+        data: [94, 47, 55, 3],
         backgroundColor: [
           "#d297de",
           "#aef2e9",
@@ -62,9 +62,10 @@ const Dashboard = () => {
   });
 
   return (
-    <Box  bgGradient='linear(to-l, blue.100, pink.100)' >
+    <Box bgGradient='linear(to-l, blue.100, pink.100)' >
       <Text
         bgGradient='linear(to-l, #7928CA, #FF0080)'
+        mt={{ base: 35 , md:  5, lg: 2}}
         bgClip='text'
         fontSize='6xl'
         fontWeight='extrabold'
@@ -82,7 +83,7 @@ const Dashboard = () => {
       >
         Product Listings
       </Text>
-      <Box  width={{base : "sm",md : "xl",lg : "3xl"}} m={"auto"}>
+      <Box width={{ base: "sm", md: "xl", lg: "3xl" }} m={"auto"}>
         <Bar data={productData} />
       </Box>
       <Text
@@ -95,7 +96,7 @@ const Dashboard = () => {
       >
         Users Gained Per Year
       </Text>
-      <Box width={{base : "sm",md : "xl",lg : "3xl"}} m={"auto"}>
+      <Box width={{ base: "sm", md: "xl", lg: "3xl" }} m={"auto"}>
         <Line data={userData} />
       </Box>
       <Text
@@ -107,17 +108,17 @@ const Dashboard = () => {
       >
         Order Details
       </Text>
-      <Box width={{base : "sm",md : "xl",lg : "3xl"}} m={"auto"}>
+      <Box width={{ base: "sm", md: "xl", lg: "3xl" }} m={"auto"}>
         <Pie data={OrderData} />
       </Box>
       <Text
         bgGradient='linear(to-l, #7928CA, #FF0080)'
         bgClip='text'
-        fontSize='3xl'
+        fontSize='xl'
         fontWeight='extrabold'
         textAlign={"center"}
-        >
-         Footer
+      >
+        COPYRIGHT CARATLANE © 2023
       </Text>
     </Box>
   );

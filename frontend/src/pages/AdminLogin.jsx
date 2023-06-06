@@ -19,47 +19,26 @@ import Swal from "sweetalert2";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPass] = useState("");
+export default function AdminLogin() {
+  const [email, setEmail] = useState("admin@gmail.com");
+  const [password, setPass] = useState("admin");
   const navigate = useNavigate();
   const handleClick = () => {
-    const form = { email, password };
-    fetch(`${process.env.REACT_APP_BASE_URL}/user/login`, {
-      method: "POST",
-      body: JSON.stringify(form),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.msg === "login successfull" && res.token) {
+   
+        if (email=="admin@gmail.com" && password=="admin") {
+  
+          Swal.fire("Welcome Admin", "Good Morning !!!");
  
-          localStorage.setItem("user", email) 
-          localStorage.setItem('token',res.token)
-          Swal.fire("Good job!", "Login Successfull", "success");
- 
-          navigate("/");
-        } else if (res.msg === "login failed") {
-          Swal.fire("Nah !", "Wrong credentials", "error");
-        } else if (res.msg === "Please fill all the fields") {
-          Swal.fire("Wait", "Some fields are missing", "question");
-        } else {
+          navigate("/admin");
+        }  else {
           Swal.fire(
             "Error",
             "Something went wrong. Please try after sometime",
             "error"
           );
         }
-      })
-      .catch((err) =>
-        Swal.fire(
-          "Error",
-          "Something went wrong. Please try after sometime",
-          "error"
-        )
-      );
+    
+     
   };
   return (
     <>
@@ -73,7 +52,7 @@ export default function Login() {
       >
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           <Stack align={"center"}>
-            <Heading fontSize={"4xl"}>Login to your account</Heading>
+            <Heading fontSize={"4xl"}>Dear Login As Admin</Heading>
             <Text fontSize={"lg"} color={"gray.600"}>
               to enjoy all of our cool <Link color={"blue.400"}>features</Link>{" "}
               ✌️
@@ -133,4 +112,4 @@ export default function Login() {
       <Footer />
     </>
   );
-}
+ }

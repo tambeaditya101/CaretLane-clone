@@ -28,9 +28,9 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 const AccountInfo = () => {
   const [details, setDetails] = useState({
     Name: "Hemensan",
-    EmailId: "Hemensan@gmail.com",
+    EmailId: "hemen@gmail.com",
     Phone: "6264866332",
-    Password: "hemensan",
+    Password: "hemen",
   });
   const [show, setShow] = useState(false);
  

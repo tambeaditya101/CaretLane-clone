@@ -31,6 +31,7 @@ import { useDispatch,useSelector} from "react-redux";
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/navbar/Navbar";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -74,14 +75,13 @@ import { useNavigate } from "react-router-dom";
 
 
 const Payment = () => {
+
   const [first_name, setFirsName] = useState("");
   const [last_name, setLastName] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  // const [mobile, setMobile] = useState("");
-  const [address, setAddress] = useState("");
   const [mobile, setMobile] = useState("");
-  const [product, setProduct] = useState("");
+  const [address, setAddress] = useState("");
   const [pincode, setPincode] = useState("");
   const [country, setCountry] = useState("India");
   const [data, setData] = useState([])
@@ -89,9 +89,9 @@ const Payment = () => {
   const toast = useToast()
 
   const token=localStorage.getItem("token")
-  console.log(token)
+
  const fetChData=()=>{
-  fetch(`http://localhost:8080/cart/products`,{
+  fetch(`${process.env.REACT_APP_BASE_URL}/cart/products`,{
      method : "GET",
      headers : {
       "content-type" : "Application/json",
@@ -100,8 +100,7 @@ const Payment = () => {
   })
   .then(res=> res.json())
   .then((data)=> {
-    setData(data)
-    console.log(data)
+    setData([...data])
   }).catch((err)=>{
     console.log("Error")
   })
@@ -118,45 +117,47 @@ const Payment = () => {
 
   
   const handlePayment = () => {
-    let userData = {
-      first_name,
-      last_name ,
-      city ,
-      address,
-      mobile,
-      pincode ,
-      product,
-      country,
-    };
-   
-    toast({
-      position: "top",
-      title: "Order placed",
-      description: "SuccessFul.",
-      status: "success",
-      duration: 4000,
-      isClosable: true,
-    });
+    if(!first_name || !last_name || !mobile || !pincode || !city || !address ){
+      toast({
+        position: "top",
+        title: "Please fill all details",
+        status: "warning",
+        duration: 4000,
+        isClosable: true,
+      });
 
-    fetch(`http://localhost:8080/cart/product/add`,{
-      method:"POST",
-      body:JSON.stringify({userData}),
-      headers:{
-        "Content-Type":"application/json",
-        // "Authorization":`Bearer ${JSON.parse(localStorage.getItem("token"))}`
-      }
-    })
-    .then(res=> res.json()
-    ).then((res)=>{
-      console.log(res)
-    }).catch((err)=>{
-      console.log(err);
-    })
+    }else{
 
- 
-    return navigate('/')
+      let userData = {
+        first_name,
+        last_name ,
+        city ,
+        address,
+        mobile,
+        pincode ,
+        product:data,
+        country,
+      };
+  
+      axios.post(`${process.env.REACT_APP_BASE_URL}/order/add`,userData,{
+        headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      .then((res)=>{})
+      .catch((err)=>{})
+     
+      toast({
+        position: "top",
+        title: "Order placed",
+        description: "SuccessFul.",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+      });
+      return navigate('/')
 
-   
+    }
   };
 
 
@@ -172,7 +173,6 @@ const Payment = () => {
     }
     gst = (sum*18)/100
     grandTotal = Math.floor(sum+gst)
-    console.log('grandTotal:', grandTotal)
    
   }
 
